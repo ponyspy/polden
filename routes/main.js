@@ -1,5 +1,5 @@
 exports.index = function(req, res) {
-  res.redirect('/posts')
+  res.render('main')
 }
 
 exports.locale = function(req, res) {
