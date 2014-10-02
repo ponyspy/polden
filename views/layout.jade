@@ -4,13 +4,19 @@ html
 		include header
 	body
 		//- include counters
+		.outer_block
 		.main_block
 			.header_block
 				.head_title_block
-					.title_contacts 119019, ул. Воздвиженка, 5/25
-					.title_phone Приемная +7 (499) 691-21-09
-				a(href='/').logo МУАР
-				.logo_under Музей архитектуры имени Щусева
+					img.logo_one_img(src="/images/design/logo_one.jpg")
+					.logo_date 11.10 - 28.11 2014
+					img.logo_two_img(src="/images/design/logo_two.jpg")
+					.title_text Российская государственная детская библиотека представляет интерактивную выставку для детей и взрослых, посвященную эпохе «оттепели». Дети и взрослые смогут увидеть книги и иллюстрации, послушать музыку и посмотреть мультфильмы 1956-1968 годов
+				.menu_block
+					.link_outer: a(href='/news') НОВОСТИ
+					.link_outer: a(href='/schedule/events') РАСПИСАНИЕ ВЫСТАВКИ ПО МЕРОПРИЯТИЯМ
+					.link_outer: a(href='/schedule/cal') РАСПИСАНИЕ ВЫСТАВКИ ПО ПОРЯДКУ
+					.link_outer: a(href='/about') О ВЫСТАВКЕ
 			.content_block
 				block content
 			- var date = new Date()
