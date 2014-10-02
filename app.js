@@ -26,7 +26,7 @@ app.use(methodOverride());
 app.use(cookieParser());
 
 app.use(session({
-	key: 'muar.sess',
+	key: 'polden.sess',
 	resave: false,
 	saveUninitialized: false,
 	secret: 'keyboard cat',

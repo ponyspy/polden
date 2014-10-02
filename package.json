@@ -1,7 +1,7 @@
 {
-  "name": "muar",
+  "name": "polden",
   "version": "1.0.0",
-  "description": "muar ====",
+  "description": "polden ====",
   "main": "app.js",
   "dependencies": {
     "accepts": "^1.1.0",
@@ -30,12 +30,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nrdn/muar.git"
+    "url": "https://github.com/ponyspy/polden.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nrdn/muar/issues"
+    "url": "https://github.com/ponyspy/polden/issues"
   },
-  "homepage": "https://github.com/nrdn/muar"
+  "homepage": "https://github.com/ponyspy/polden"
 }
