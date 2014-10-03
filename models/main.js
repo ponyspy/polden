@@ -9,7 +9,7 @@ var userSchema = new Schema({
 		date: {type: Date, default: Date.now},
 });
 
-var postSchema = new Schema({
+var newsSchema = new Schema({
 	title: {
 		ru: String,
 		en: String
@@ -30,4 +30,4 @@ var postSchema = new Schema({
 
 
 module.exports.User = mongoose.model('User', userSchema);
-module.exports.Post = mongoose.model('Post', postSchema);
+module.exports.News = mongoose.model('News', newsSchema);

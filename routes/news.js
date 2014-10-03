@@ -1,20 +1,20 @@
-var Post = require('../models/main.js').Post;
+var News = require('../models/main.js').News;
 
 
 // ------------------------
-// *** Posts Block ***
+// *** News Block ***
 // ------------------------
 
 
-exports.posts = function(req, res) {
-  Post.aggregate()
+exports.main = function(req, res) {
+  News.aggregate()
   .group({
     '_id': {
       year: { $year: '$date' },
       month: { $month: '$date' },
       day: { $dayOfMonth: '$date' }
     },
-    'posts': {
+    'news': {
       $push: {
         title: '$title',
         description: '$description',
@@ -29,20 +29,6 @@ exports.posts = function(req, res) {
   })
   .sort({'_id.year': -1, '_id.month': -1, '_id.day': -1})
   .exec(function(err, dates) {
-    res.render('posts', {dates: dates});
-  });
-}
-
-
-// ------------------------
-// *** Post Block ***
-// ------------------------
-
-
-exports.post = function(req, res) {
-  var id = req.params.id;
-
-  Post.findById(id).exec(function(err, post) {
-    res.render('posts/post.jade', {post: post});
+    res.render('news', {dates: dates});
   });
 }

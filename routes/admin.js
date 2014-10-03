@@ -1,14 +1,14 @@
-var Post = require('../models/main.js').Post;
+var News = require('../models/main.js').News;
 
 
 // ------------------------
-// *** Admin Posts Block ***
+// *** Admin News Block ***
 // ------------------------
 
 
-exports.posts_list = function(req, res) {
-  Post.find().exec(function(err, posts) {
-    res.render('auth/posts/', {posts: posts});
+exports.news_list = function(req, res) {
+  News.find().exec(function(err, news) {
+    res.render('auth/news/', {news: news});
   });
 }
 
@@ -18,25 +18,25 @@ exports.posts_list = function(req, res) {
 // ------------------------
 
 
-exports.posts_add = function(req, res) {
-  res.render('auth/posts/add.jade');
+exports.news_add = function(req, res) {
+  res.render('auth/news/add.jade');
 }
 
-exports.posts_add_form = function(req, res) {
+exports.news_add_form = function(req, res) {
   var post = req.body;
   var files = req.files;
   var date = new Date();
   var hours = date.getHours();
   var minutes = date.getMinutes();
 
-  var post_item = new Post();
+  var news = new News();
 
-  post_item.title.ru = post.ru.title;
-  post_item.description.ru = post.ru.description;
-  post_item.date = new Date(Date.UTC(post.date.year, post.date.month, post.date.date, hours, minutes));
+  news.title.ru = post.ru.title;
+  news.description.ru = post.ru.description;
+  news.date = new Date(Date.UTC(post.date.year, post.date.month, post.date.date, hours, minutes));
 
-  post_item.save(function(err, post_item) {
-    res.redirect('/auth/posts');
+  news.save(function(err, news) {
+    res.redirect('/auth/news');
   });
 }
 
@@ -46,28 +46,27 @@ exports.posts_add_form = function(req, res) {
 // ------------------------
 
 
-exports.posts_edit = function(req, res) {
+exports.news_edit = function(req, res) {
   var id = req.params.id;
 
-  Post.findById(id).exec(function(err, post) {
-    res.render('auth/posts/edit.jade', {post: post});
+  News.findById(id).exec(function(err, news) {
+    res.render('auth/news/edit.jade', {news: news});
   });
 }
 
-exports.posts_edit_form = function(req, res) {
+exports.news_edit_form = function(req, res) {
   var post = req.body;
   var id = req.params.id;
   var date = new Date();
   var hours = date.getHours();
   var minutes = date.getMinutes();
 
-  Post.findById(id).exec(function(err, post_item) {
+  News.findById(id).exec(function(err, news) {
+    news.title.ru = post.ru.title;
+    news.description.ru = post.ru.description;
+    news.date = new Date(Date.UTC(post.date.year, post.date.month, post.date.date, hours, minutes));
 
-    post_item.title.ru = post.ru.title;
-    post_item.description.ru = post.ru.description;
-    post_item.date = new Date(Date.UTC(post.date.year, post.date.month, post.date.date, hours, minutes));
-
-    post_item.save(function(err, post_item) {
+    news.save(function(err, news) {
       res.redirect('/auth/posts');
     });
   });

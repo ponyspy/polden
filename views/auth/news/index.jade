@@ -1,7 +1,7 @@
 extends ../../layout
 
 block title
-	title СПИСОК ПОСТОВ
+	title НОВОСТИ
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/add.css')
@@ -11,14 +11,14 @@ block content_scripts
 
 block content
 	a.back_link(href='/auth') < Назад
-	.title СПИСОК ПОСТОВ
+	.title НОВОСТИ
 	br
-	a.add(href='/auth/posts/add') добавить пост
+	a.add(href='/auth/news/add') добавить новость
 	br
 	br
 	.main_menu_block
-		each post in posts
-			.post
-				a.rm_post(href='#', id=post._id)= 'удалить '
+		each item in news
+			.news
+				a.rm_news(href='#', id=item._id)= 'удалить '
 				!=' | '
-				a(href='/auth/posts/edit/' + post._id)= post.title.ru
+				a(href='/auth/news/edit/' + item._id)= item.title.ru

@@ -24,11 +24,8 @@ block content
 	.posts_date_block
 		each date in dates
 			.posts_date_title= date._id.day + ' ' + months[date._id.month - 1]
-			each post in date.posts
+			each item in date.news
 				.post_item
-					.post_title_block
-						- var minutes = post.time.minutes <= 9  ? '0' + post.time.minutes : post.time.minutes
-						//- .post_date= post.time.hours + ':' + minutes
-						a.post_title(href='/posts/' + post._id)= post.title.ru
+					.post_title= item.title.ru
 					.post_description
-						+trimString(post.description.ru)
+						+trimString(item.description.ru)

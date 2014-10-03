@@ -50,7 +50,7 @@ app.use(function(req, res, next) {
 
 
 var main = require('./routes/main.js');
-var blog = require('./routes/blog.js');
+var news = require('./routes/news.js');
 var auth = require('./routes/auth.js');
 var content = require('./routes/content.js');
 var files = require('./routes/files.js');
@@ -108,28 +108,24 @@ app.route('/').get(main.index);
 app.route('/lang/:locale').get(main.locale);
 
 
-// === Blog posts Route
-app.route('/posts').get(blog.posts);
+// === News Route
+app.route('/news').get(news.main);
 
 
-// === Blog post Route
-app.route('/posts/:id').get(blog.post);
+// === Admin news Route
+app.route('/auth/news').get(checkAuth, admin.news_list);
 
 
-// === Admin posts Route
-app.route('/auth/posts').get(checkAuth, admin.posts_list);
+// === Admin @add news Route
+app.route('/auth/news/add')
+	 .get(checkAuth, admin.news_add)
+	 .post(checkAuth, admin.news_add_form);
 
 
-// === Admin @add post Route
-app.route('/auth/posts/add')
-	 .get(checkAuth, admin.posts_add)
-	 .post(checkAuth, admin.posts_add_form);
-
-
-// === Admin @edit post Route
-app.route('/auth/posts/edit/:id')
-	 .get(checkAuth, admin.posts_edit)
-	 .post(checkAuth, admin.posts_edit_form);
+// === Admin @edit news Route
+app.route('/auth/news/edit/:id')
+	 .get(checkAuth, admin.news_edit)
+	 .post(checkAuth, admin.news_edit_form);
 
 
 // === Auth Route
