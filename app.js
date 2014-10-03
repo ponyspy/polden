@@ -128,6 +128,11 @@ app.route('/auth/news/edit/:id')
 	 .post(checkAuth, admin.news_edit_form);
 
 
+// === Admin @remove news Route
+app.route('/auth/news/remove')
+	 .post(checkAuth, admin.news_remove);
+
+
 // === Auth Route
 app.route('/auth').get(checkAuth, auth.main);
 

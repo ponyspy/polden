@@ -73,3 +73,17 @@ exports.news_edit_form = function(req, res) {
     });
   });
 }
+
+
+// ------------------------
+// *** Remove News Block ***
+// ------------------------
+
+
+exports.news_remove = function(req, res) {
+  var id = req.body.id;
+  News.findByIdAndRemove(id, function() {
+    // deleteFolderRecursive(__dirname + '/public/images/events/' + id);
+    res.send('ok');
+  });
+}
