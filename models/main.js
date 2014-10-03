@@ -14,6 +14,10 @@ var newsSchema = new Schema({
 		ru: String,
 		en: String
 	},
+	s_title: {
+		ru: String,
+		en: String
+	},
 	description: {
 		ru: String,
 		en: String

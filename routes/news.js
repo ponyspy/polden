@@ -17,6 +17,7 @@ exports.main = function(req, res) {
     'news': {
       $push: {
         title: '$title',
+        s_title: '$s_title',
         description: '$description',
         _id: '$_id',
         time: {

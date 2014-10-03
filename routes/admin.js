@@ -14,7 +14,7 @@ exports.news_list = function(req, res) {
 
 
 // ------------------------
-// *** Add Posts Block ***
+// *** Add News Block ***
 // ------------------------
 
 
@@ -32,6 +32,7 @@ exports.news_add_form = function(req, res) {
   var news = new News();
 
   news.title.ru = post.ru.title;
+  news.s_title.ru = post.ru.s_title;
   news.description.ru = post.ru.description;
   news.date = new Date(Date.UTC(post.date.year, post.date.month, post.date.date, hours, minutes));
 
@@ -42,7 +43,7 @@ exports.news_add_form = function(req, res) {
 
 
 // ------------------------
-// *** Edit Posts Block ***
+// *** Edit News Block ***
 // ------------------------
 
 
@@ -63,11 +64,12 @@ exports.news_edit_form = function(req, res) {
 
   News.findById(id).exec(function(err, news) {
     news.title.ru = post.ru.title;
+    news.s_title.ru = post.ru.s_title;
     news.description.ru = post.ru.description;
     news.date = new Date(Date.UTC(post.date.year, post.date.month, post.date.date, hours, minutes));
 
     news.save(function(err, news) {
-      res.redirect('/auth/posts');
+      res.redirect('/auth/news');
     });
   });
 }
