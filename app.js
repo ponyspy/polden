@@ -153,7 +153,7 @@ app.route('/registr')
 
 
 // === Contacts Route
-app.route('/contacts').get(content.contacts);
+app.route('/about').get(content.about);
 
 
 // === Files #sitemap.xml Route

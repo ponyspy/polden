@@ -28,7 +28,7 @@ gulp.task('nodemon', function() {
 gulp.task('stylus', function () {
 	gulp.src(paths.stylus.src)
 			.pipe(stylus({
-				compress: false
+				compress: true
 			}))
 			.pipe(autoprefixer({
 				browsers: ['last 2 versions'],

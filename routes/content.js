@@ -1,3 +1,3 @@
-exports.contacts = function(req, res) {
-  res.render('content/contacts.jade');
+exports.about = function(req, res) {
+  res.render('content/about.jade');
 }
