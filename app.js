@@ -150,7 +150,7 @@ app.route('/auth/events').get(checkAuth, admin_events.list);
 // === Admin @add events Route
 app.route('/auth/events/add')
 	 .get(checkAuth, admin_events.add)
-	 // .post(checkAuth, admin_events.add_form);
+	 .post(checkAuth, admin_events.add_form);
 
 
 // === Admin @edit events Route
@@ -201,36 +201,36 @@ app.route('/robots.txt').get(files.robots);
 // ------------------------
 
 
-app.use(function(req, res, next) {
-	var accept = accepts(req);
-	res.status(404);
+// app.use(function(req, res, next) {
+// 	var accept = accepts(req);
+// 	res.status(404);
 
-	// respond with html page
-	if (accept.types('html')) {
-		res.render('error', { url: req.url, status: 404 });
-		return;
-	}
+// 	// respond with html page
+// 	if (accept.types('html')) {
+// 		res.render('error', { url: req.url, status: 404 });
+// 		return;
+// 	}
 
-	// respond with json
-	if (accept.types('json')) {
-			res.send({
-			error: {
-				status: 'Not found'
-			}
-		});
-		return;
-	}
+// 	// respond with json
+// 	if (accept.types('json')) {
+// 			res.send({
+// 			error: {
+// 				status: 'Not found'
+// 			}
+// 		});
+// 		return;
+// 	}
 
-	// default to plain-text
-	res.type('txt').send('Not found');
-});
+// 	// default to plain-text
+// 	res.type('txt').send('Not found');
+// });
 
-app.use(function(err, req, res, next) {
-	var status = err.status || 500;
+// app.use(function(err, req, res, next) {
+// 	var status = err.status || 500;
 
-	res.status(status);
-	res.render('error', { error: err, status: status });
-});
+// 	res.status(status);
+// 	res.render('error', { error: err, status: status });
+// });
 
 
 // ------------------------

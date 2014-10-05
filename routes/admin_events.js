@@ -22,6 +22,28 @@ exports.add = function(req, res) {
   res.render('auth/events/add.jade');
 }
 
+exports.add_form = function(req, res) {
+  var post = req.body;
+  var schedule = [];
+  var sh = post.schedule;
+  var event = new Event();
+
+  sh.date.forEach(function(el, index) {
+    var date = new Date(sh.year[index], sh.month[index], sh.date[index], sh.hours[index], sh.minutes[index]);
+    schedule.push(date);
+  });
+
+  event.title.ru = post.ru.title;
+  event.description.ru = post.ru.description;
+  event.age.ru = post.ru.age;
+  event.category = post.category;
+  event.schedule = schedule;
+
+  event.save(function(err, event) {
+    res.redirect('back');
+  });
+}
+
 
 // ------------------------
 // *** Edit Events Block ***
