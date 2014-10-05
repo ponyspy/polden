@@ -1,6 +1,6 @@
 var Event = require('../models/main.js').Event;
 
-exports.main = function(req, res) {
+exports.main_test = function(req, res) {
 	Event.aggregate()
 	.unwind('schedule')
   .group({
@@ -24,10 +24,18 @@ exports.main = function(req, res) {
     },
     'count': { $sum: 1 }
   })
-  .sort({'_id.year': 1, '_id.month': 1, '_id.day': 1})
+  .sort('_id.year _id.month _id.day')
   .exec(function(err, dates) {
-    res.render('schedule', {dates: dates});
+    res.render('schedule/test_index.jade', {dates: dates});
   });
+}
+
+exports.events_test = function(req, res) {
+	res.render('schedule/test_events.jade');
+}
+
+exports.main = function(req, res) {
+	res.render('schedule');
 }
 
 exports.events = function(req, res) {

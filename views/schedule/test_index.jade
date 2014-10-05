@@ -11,3 +11,9 @@ block content_scripts
 
 block content
 	h1 РАСПИСАНИЕ
+	each date in dates
+		h2= date._id.day + '.' + date._id.month + '.' + date._id.year
+		each event in date.events
+			span= event.time.hours + ':' + event.time.minutes + ' '
+			b= event.title.ru
+			br
