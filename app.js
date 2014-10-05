@@ -51,10 +51,12 @@ app.use(function(req, res, next) {
 
 var main = require('./routes/main.js');
 var news = require('./routes/news.js');
+var schedule = require('./routes/schedule.js');
 var auth = require('./routes/auth.js');
 var content = require('./routes/content.js');
 var files = require('./routes/files.js');
-var admin = require('./routes/admin.js');
+var admin_news = require('./routes/admin_news.js');
+var admin_events = require('./routes/admin_events.js');
 
 
 // ------------------------
@@ -112,25 +114,54 @@ app.route('/lang/:locale').get(main.locale);
 app.route('/news').get(news.main);
 
 
+// === Events Route
+app.route('/events').get(schedule.events);
+
+
+// === Schedule Route
+app.route('/schedule').get(schedule.main);
+
+
 // === Admin news Route
-app.route('/auth/news').get(checkAuth, admin.news_list);
+app.route('/auth/news').get(checkAuth, admin_news.list);
 
 
 // === Admin @add news Route
 app.route('/auth/news/add')
-	 .get(checkAuth, admin.news_add)
-	 .post(checkAuth, admin.news_add_form);
+	 .get(checkAuth, admin_news.add)
+	 .post(checkAuth, admin_news.add_form);
 
 
 // === Admin @edit news Route
 app.route('/auth/news/edit/:id')
-	 .get(checkAuth, admin.news_edit)
-	 .post(checkAuth, admin.news_edit_form);
+	 .get(checkAuth, admin_news.edit)
+	 .post(checkAuth, admin_news.edit_form);
 
 
-// === Admin @remove news Route
-app.route('/auth/news/remove')
-	 .post(checkAuth, admin.news_remove);
+// === Admin @remove events Route
+app.route('/auth/events/remove')
+	 .post(checkAuth, admin_events.remove);
+
+
+// === Admin events Route
+app.route('/auth/events').get(checkAuth, admin_events.list);
+
+
+// === Admin @add events Route
+app.route('/auth/events/add')
+	 .get(checkAuth, admin_events.add)
+	 // .post(checkAuth, admin_events.add_form);
+
+
+// === Admin @edit events Route
+app.route('/auth/events/edit/:id')
+	 .get(checkAuth, admin_events.edit)
+	 // .post(checkAuth, admin_events.edit_form);
+
+
+// === Admin @remove events Route
+app.route('/auth/events/remove')
+	 .post(checkAuth, admin_events.remove);
 
 
 // === Auth Route

@@ -6,7 +6,7 @@ var News = require('../models/main.js').News;
 // ------------------------
 
 
-exports.news_list = function(req, res) {
+exports.list = function(req, res) {
   News.find().exec(function(err, news) {
     res.render('auth/news/', {news: news});
   });
@@ -18,11 +18,11 @@ exports.news_list = function(req, res) {
 // ------------------------
 
 
-exports.news_add = function(req, res) {
+exports.add = function(req, res) {
   res.render('auth/news/add.jade');
 }
 
-exports.news_add_form = function(req, res) {
+exports.add_form = function(req, res) {
   var post = req.body;
   var files = req.files;
   var date = new Date();
@@ -47,7 +47,7 @@ exports.news_add_form = function(req, res) {
 // ------------------------
 
 
-exports.news_edit = function(req, res) {
+exports.edit = function(req, res) {
   var id = req.params.id;
 
   News.findById(id).exec(function(err, news) {
@@ -55,7 +55,7 @@ exports.news_edit = function(req, res) {
   });
 }
 
-exports.news_edit_form = function(req, res) {
+exports.edit_form = function(req, res) {
   var post = req.body;
   var id = req.params.id;
   var date = new Date();
@@ -80,7 +80,7 @@ exports.news_edit_form = function(req, res) {
 // ------------------------
 
 
-exports.news_remove = function(req, res) {
+exports.remove = function(req, res) {
   var id = req.body.id;
   News.findByIdAndRemove(id, function() {
     // deleteFolderRecursive(__dirname + '/public/images/events/' + id);

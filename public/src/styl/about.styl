@@ -1,9 +1,21 @@
-.content_block
-	overflow hidden
+.outer_block
+	transform skewY(10deg) rotate(-8deg) translate(-90px, 10px)
+
+.main_block
+	transform skewY(-10deg) rotate(8deg) translate(90px, -10px)
 
 .menu_block
 	a:nth-child(4)
-		color #00e83b
+		color rgb(0, 220, 50)
+
+.content_text
+	border-bottom 2px solid black
+	margin-bottom 20px
+	font 12pt/14pt 'DinProMedium'
+
+.content_columns_group
+	overflow hidden
+	border-bottom 2px solid black
 
 .content_title
 	width 180px
@@ -15,10 +27,10 @@
 
 .content_colum
 	float left
+	width 350px
+	font 12pt/14pt 'DinProBold'
 	ol
 		color #ff144b
-		font 12pt/14pt 'DinProBold'
-		width 350px
 		list-style-type upper-roman
 	.content_title
 		color #ff144b
@@ -30,5 +42,24 @@
 		color black
 	.content_creator
 		font 10pt/12pt 'DinProBold'
+	li
+		margin-bottom 20px
+
+
+.content_colum_min
+	float left
+	width 270px
+	font 12pt/14pt 'DinProBold'
+	ol
+		color #ff144b
+	.content_title
+		color #ff144b
+	.content_description
+		font 10pt/12pt 'DinProMedium'
+		color black
+	.content_hall
+		font 10pt/12pt 'DinProBold'
+		color black
+		border-bottom 1px solid #ff144b
 	li
 		margin-bottom 20px

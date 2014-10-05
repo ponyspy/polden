@@ -27,6 +27,28 @@ var newsSchema = new Schema({
 	date: {type: Date, default: Date.now}
 });
 
+var eventSchema = new Schema({
+	title: {
+		ru: String,
+		en: String
+	},
+	hall: {
+		ru: String,
+		en: String
+	},
+	description: {
+		ru: String,
+		en: String
+	},
+	age: {
+		ru: String,
+		en: String
+	},
+	category: String,
+	schedule: [Date],
+	date: {type: Date, default: Date.now}
+});
+
 
 // ------------------------
 // *** Exports Block ***
@@ -35,3 +57,4 @@ var newsSchema = new Schema({
 
 module.exports.User = mongoose.model('User', userSchema);
 module.exports.News = mongoose.model('News', newsSchema);
+module.exports.Event = mongoose.model('Event', eventSchema);
