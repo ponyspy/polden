@@ -10,5 +10,6 @@ $(document).ready(function() {
 	}
 
 	$('.rm_news').on('click', {path:'/auth/news/remove', description: 'Удалить новость?'}, remove);
+	$('.rm_event').on('click', {path:'/auth/events/remove', description: 'Удалить событие?'}, remove);
 
 });
