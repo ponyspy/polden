@@ -29,7 +29,7 @@ exports.add_form = function(req, res) {
   var event = new Event();
 
   sh.date.forEach(function(el, index) {
-    var date = new Date(sh.year[index], sh.month[index], sh.date[index], sh.hours[index], sh.minutes[index]);
+    var date = new Date(Date.UTC(sh.year[index], sh.month[index], sh.date[index], sh.hours[index], sh.minutes[index]));
     schedule.push(date);
   });
 

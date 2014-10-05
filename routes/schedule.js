@@ -26,7 +26,6 @@ exports.main = function(req, res) {
   })
   .sort({'_id.year': 1, '_id.month': 1, '_id.day': 1})
   .exec(function(err, dates) {
-  	console.log(dates)
     res.render('schedule', {dates: dates});
   });
 }
