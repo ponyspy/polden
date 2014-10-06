@@ -1,5 +1,5 @@
 exports.index = function(req, res) {
-  res.render('main')
+  res.redirect('/news')
 }
 
 exports.locale = function(req, res) {
