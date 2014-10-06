@@ -18,4 +18,5 @@ block content
 				.news_item
 					.news_title= item.title.ru
 					.news_s_title= item.s_title.ru
-					.news_description= item.description.ru
+					.news_description
+						!= item.description.ru
