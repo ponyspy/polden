@@ -138,9 +138,9 @@ app.route('/auth/news/edit/:id')
 	 .post(checkAuth, admin_news.edit_form);
 
 
-// === Admin @remove events Route
-app.route('/auth/events/remove')
-	 .post(checkAuth, admin_events.remove);
+// === Admin @remove news Route
+app.route('/auth/news/remove')
+	 .post(checkAuth, admin_news.remove);
 
 
 // === Admin events Route
