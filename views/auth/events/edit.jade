@@ -31,19 +31,19 @@ block content
 			input.en(type="text", name="en[age]", disabled)
 			.form_title Категория:
 			select(name='category')
-				option(value='children') детский праздник
-				option(value='tour') экскурсия
-				option(value='writers') встреча с писателями
-				option(value='music') музыка
-				option(value='master_class') мастер-класс/студия
-				option(value='literature') литературное занятие
-				option(value='lecture') лекция
-				option(value='roundtable') круглый стол
-				option(value='film') кинопоказ
-				option(value='filmstrip') диафильм
-				option(value='animation') мультипликация
-				option(value='animation_lecture') мультипликация/лекция
-				option(value='recital') творческий вечер
+				option(value='children', selected=event.category == 'children') детский праздник
+				option(value='tour', selected=event.category == 'tour') экскурсия
+				option(value='writers', selected=event.category == 'writers') встреча с писателями
+				option(value='music', selected=event.category == 'music') музыка
+				option(value='master_class', selected=event.category == 'master_class') мастер-класс/студия
+				option(value='literature', selected=event.category == 'literature') литературное занятие
+				option(value='lecture', selected=event.category == 'lecture') лекция
+				option(value='roundtable', selected=event.category == 'roundtable') круглый стол
+				option(value='film', selected=event.category == 'film') кинопоказ
+				option(value='filmstrip', selected=event.category == 'filmstrip') диафильм
+				option(value='animation', selected=event.category == 'animation') мультипликация
+				option(value='animation_lecture', selected=event.category == 'animation_lecture') мультипликация/лекция
+				option(value='recital', selected=event.category == 'recital') творческий вечер
 				//- .form_title Фото:
 				//- input(type="file", name="photo")
 			.form_title Расписание:
