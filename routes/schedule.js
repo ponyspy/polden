@@ -17,7 +17,8 @@ exports.main_test = function(req, res) {
     '_id': {
       year: { $year: '$schedule' },
       month: { $month: '$schedule' },
-      date: { $dayOfMonth: '$schedule' }
+      date: { $dayOfMonth: '$schedule' },
+      day: { $dayOfWeek: '$schedule' }
     },
     'events': {
       $push: {
@@ -33,7 +34,7 @@ exports.main_test = function(req, res) {
     },
     'count': { $sum: 1 }
   })
-  .sort({'_id.year': 1, '_id.month': 1, '_id.day': 1})
+  .sort({'_id.year': 1, '_id.month': 1, '_id.date': 1})
   .exec(function(err, dates) {
     res.render('schedule/test_index.jade', {dates: dates});
   });
