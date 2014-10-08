@@ -35,6 +35,7 @@ exports.add_form = function(req, res) {
 
   event.title.ru = post.ru.title;
   event.description.ru = post.ru.description;
+  event.hall.ru = post.ru.hall;
   event.age.ru = post.ru.age;
   event.category = post.category;
   event.schedule = schedule;
@@ -73,6 +74,7 @@ exports.edit_form = function(req, res) {
   Event.findById(id).exec(function(err, event) {
     event.title.ru = post.ru.title;
     event.description.ru = post.ru.description;
+    event.hall.ru = post.ru.hall;
     event.age.ru = post.ru.age;
     event.category = post.category;
     event.schedule = schedule;
