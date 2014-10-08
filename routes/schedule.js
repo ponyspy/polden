@@ -6,6 +6,7 @@ exports.main_test = function(req, res) {
 
 	Event.aggregate()
 	.unwind('schedule')
+  .sort({'schedule': 1})
   .match({
     'schedule': {
       $gte: start,
@@ -23,8 +24,7 @@ exports.main_test = function(req, res) {
         title: '$title',
         hall: '$hall',
         age: '$age',
-        description: '$description',
-        _id: '$_id',
+        hall: '$hall',
         time: {
           hours: { $hour: '$schedule' },
           minutes: { $minute: '$schedule' }
@@ -33,7 +33,7 @@ exports.main_test = function(req, res) {
     },
     'count': { $sum: 1 }
   })
-  .sort('_id.year _id.month _id.day')
+  .sort({'_id.year': 1, '_id.month': 1, '_id.day': 1})
   .exec(function(err, dates) {
     res.render('schedule/test_index.jade', {dates: dates});
   });

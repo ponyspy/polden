@@ -8,6 +8,7 @@ var News = require('../models/main.js').News;
 
 exports.main = function(req, res) {
   News.aggregate()
+  .sort({'date': -1})
   .group({
     '_id': {
       year: { $year: '$date' },
@@ -19,7 +20,6 @@ exports.main = function(req, res) {
         title: '$title',
         s_title: '$s_title',
         description: '$description',
-        _id: '$_id',
         time: {
           hours: { $hour: '$date' },
           minutes: { $minute: '$date' }
