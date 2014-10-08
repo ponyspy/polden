@@ -40,7 +40,9 @@ $(document).ready(function() {
 
 	function snakeForward () {
 		var snake = $('.snake');
-		snake.first().clone().insertAfter(snake.last());
+		snake.first().clone()
+			.find('option').prop('selected', false).end()
+			.insertAfter(snake.last());
 	}
 
 	function snakeBack () {
