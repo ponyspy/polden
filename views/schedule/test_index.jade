@@ -12,13 +12,17 @@ block content_scripts
 block content
 	- var days = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота']
 	each date in dates
+		- var d_date = date._id.date <= 9 ? '0' + date._id.date : date._id.date
+		- var m_month = date._id.month <= 9 ? '0' + date._id.month : date._id.month
 		.schedule_date_block
-			.schedule_date_title=date._id.date + '.' + date._id.month + ' ' + days[date._id.day - 1]
+			.schedule_date_title=d_date + '.' + m_month + ' ' + days[date._id.day - 1]
 			.schedule_events
 				each event in date.events
 					.event_item
 						.event_header
-							.event_time= event.time.hours + ':' + event.time.minutes
+							- var h_hours = event.time.hours <= 9 ? '0' + event.time.hours : event.time.hours
+							- var m_minutes = event.time.minutes <= 9 ? '0' + event.time.minutes : event.time.minutes
+							.event_time= h_hours + ':' + m_minutes
 							.event_hall: .inner= event.hall.ru
 						.event_title= event.title.ru
 						.event_age= event.age.ru
