@@ -1,7 +1,7 @@
 extends ../../layout
 
 block title
-	title ДОБАВИТЬ СОБЫТИЕ
+	title РЕДАКТИРОВАТЬ СОБЫТИЕ
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/add.css')
@@ -15,19 +15,19 @@ block content
 	- var months = ['ЯНВАРЬ', 'ФЕВРАЛЬ', 'МАРТ', 'АПРЕЛЬ', 'МАЙ', 'ИЮНЬ', 'ИЮЛЬ', 'АВГУСТ', 'СЕНТЯБРЬ', 'ОКТЯБРЬ', 'НОЯБРЬ', 'ДЕКАБРЬ']
 	.form_block
 		a.back_link(href='/auth/events') < Назад
-		.title ДОБАВИТЬ СОБЫТИЕ
+		.title РЕДАКТИРОВАТЬ СОБЫТИЕ
 		form(action="/auth/events/add", method="post")
 			.form_title Заголовок:
-			input.ru(type="text", name="ru[title]",)
+			input.ru(type="text", name="ru[title]", value=event.title.ru)
 			input.en(type="text", name="en[title]", disabled)
 			.form_title Зал:
-			input.ru(type="text", name="ru[hall]",)
+			input.ru(type="text", name="ru[hall]", value=event.hall.ru)
 			input.en(type="text", name="en[hall]", disabled)
 			.form_title Описание:
-			textarea.ru(name="ru[description]", rows="8",)
+			textarea.ru(name="ru[description]", rows="8",)= event.description.ru
 			textarea.en(name="en[description]", rows="8", disabled)
 			.form_title Возраст:
-			input.ru(type="text", name="ru[age]",)
+			input.ru(type="text", name="ru[age]", value=event.age.ru)
 			input.en(type="text", name="en[age]", disabled)
 			.form_title Категория:
 			select(name='category')

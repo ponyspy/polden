@@ -156,7 +156,7 @@ app.route('/auth/events/add')
 // === Admin @edit events Route
 app.route('/auth/events/edit/:id')
 	 .get(checkAuth, admin_events.edit)
-	 // .post(checkAuth, admin_events.edit_form);
+	 .post(checkAuth, admin_events.edit_form);
 
 
 // === Admin @remove events Route
