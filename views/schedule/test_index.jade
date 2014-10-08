@@ -15,5 +15,9 @@ block content
 		h2= date._id.day + '.' + date._id.month + '.' + date._id.year
 		each event in date.events
 			span= event.time.hours + ':' + event.time.minutes + ' '
-			b= event.title.ru
+			b= 'Заголовок: ' + event.title.ru
+			br
+			b= 'Возраст: ' + event.age.ru
+			br
+			b= 'Зал: ' + event.hall.ru
 			br

@@ -2,7 +2,7 @@ var Event = require('../models/main.js').Event;
 
 exports.main_test = function(req, res) {
   var start = new Date(Date.UTC(2014, 0, 1));
-  var end = new Date(Date.UTC(2014, 3, 30));
+  var end = new Date(Date.UTC(2014, 11, 30));
 
 	Event.aggregate()
 	.unwind('schedule')
