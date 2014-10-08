@@ -17,7 +17,8 @@ exports.main_test = function(req, res) {
     '_id': {
       year: { $year: '$schedule' },
       month: { $month: '$schedule' },
-      day: { $dayOfMonth: '$schedule' }
+      date: { $dayOfMonth: '$schedule' },
+      day: { $dayOfWeek: '$schedule' }
     },
     'events': {
       $push: {

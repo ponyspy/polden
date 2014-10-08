@@ -10,14 +10,15 @@ block content_scripts
 	script(type='text/javascript', src='/build/js/schedule.js' + version)
 
 block content
-	h1 РАСПИСАНИЕ
+	- var days = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота']
 	each date in dates
-		h2= date._id.day + '.' + date._id.month + '.' + date._id.year
-		each event in date.events
-			span= event.time.hours + ':' + event.time.minutes + ' '
-			b= 'Заголовок: ' + event.title.ru
-			br
-			b= 'Возраст: ' + event.age.ru
-			br
-			b= 'Зал: ' + event.hall.ru
-			br
+		.schedule_date_block
+			.schedule_date_title=date._id.date + '.' + date._id.month + ' ' + days[date._id.day]
+			.schedule_events
+				each event in date.events
+					.event_item
+						.event_header
+							.event_time= event.time.hours + ':' + event.time.minutes
+							.event_hall: .inner= event.hall.ru
+						.event_title= event.title.ru
+						.event_age= event.age.ru
