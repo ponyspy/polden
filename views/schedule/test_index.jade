@@ -13,7 +13,7 @@ block content
 	- var days = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота']
 	each date in dates
 		.schedule_date_block
-			.schedule_date_title=date._id.date + '.' + date._id.month + ' ' + days[date._id.day]
+			.schedule_date_title=date._id.date + '.' + date._id.month + ' ' + days[date._id.day - 1]
 			.schedule_events
 				each event in date.events
 					.event_item
