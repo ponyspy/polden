@@ -57,22 +57,22 @@ block content
 						select(name='schedule[date][]')
 							option(value='') День
 							- for (var i=1; i<32; i++)
-								option(value=i, selected=(i == date.getDate()))= i
+								option(value=i, selected=(i == date.getUTCDate()))= i
 						b /
 						select(name='schedule[month][]')
 							option(value='') Месяц
 							each month, i in months
-								option(value=i, selected=(i == date.getMonth()))= month
+								option(value=i, selected=(i == date.getUTCMonth()))= month
 						b /
 						select(name='schedule[year][]')
 							option(value='') Год
-							option(value=year, selected=(year == now.getFullYear()))= year
-							option(value=year - 1, selected=(year - 1 == now.getFullYear()))= year - 1
+							option(value=year, selected=(year == date.getUTCFullYear()))= year
+							option(value=year - 1, selected=(year - 1 == date.getUTCFullYear()))= year - 1
 						b Время:
 						select(name='schedule[hours][]')
 							option(value='') Часы
 							- for (var i=0; i<24; i++)
-								option(value=i, selected=(i == date.getHours()))= i
+								option(value=i, selected=(i == date.getUTCHours()))= i
 						b :
 						select(name='schedule[minutes][]')
 							option(value='') Минуты
