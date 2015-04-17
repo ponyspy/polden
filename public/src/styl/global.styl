@@ -4,13 +4,12 @@ body
 	overflow-x hidden
 
 .outer_block
-	width 95%
-	min-width 1180px
+	width 1140px
 	background-color white
-	transform skewY(10deg) rotate(-8deg) translate(-55px, 10px)
+	// transform skewY(10deg) rotate(-8deg) translate(-55px, 10px)
 
 .main_block
-	transform skewY(-10deg) rotate(8deg) translate(55px, -10px)
+	// transform skewY(-10deg) rotate(8deg) translate(55px, -10px)
 
 .menu_block
 	margin-left 110px
@@ -32,6 +31,16 @@ body
 .header_block
 	margin-left 50px
 	width 1280px
+	&:before
+		content ''
+		background-color #ff144b
+		transform rotate(6deg)
+		width 800px
+		height 200px
+		position absolute
+		z-index 1000
+		top -170px
+		left 500px
 
 .head_title_block
 	overflow hidden
@@ -66,11 +75,13 @@ body
 
 .title_text
 	width 230px
-	margin-left 10px
+	margin-left 120px
 	margin-top 50px
 	float left
 	font 13pt/14pt 'DinProMedium'
 	hyphens: auto
+	position relative
+	z-index 999999
 
 .text_green
 	color rgb(0, 220, 50)
