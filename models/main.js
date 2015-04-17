@@ -21,6 +21,7 @@ var newsSchema = new Schema({
 var exhibitionSchema = new Schema({
 	title: { type: String, trim: true, locale: true },
 	description: { type: String, trim: true, locale: true },
+	categorys: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
 	interval: {
 		start: Date,
 		end: Date
@@ -36,7 +37,7 @@ var eventSchema = new Schema({
 		age: { type: String, trim: true, locale: true },
 	},
 	exhibition: { type: Schema.Types.ObjectId, ref: 'Exhibition' },
-	category: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
+	categorys: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
 	schedule: [Date],
 	date: {type: Date, default: Date.now}
 });

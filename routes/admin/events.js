@@ -1,4 +1,5 @@
-var Event = require('../models/main.js').Event;
+var Event = require('../../models/main.js').Event;
+var Exhibition = require('../../models/main.js').Exhibition;
 
 
 // ------------------------
@@ -7,8 +8,11 @@ var Event = require('../models/main.js').Event;
 
 
 exports.list = function(req, res) {
-  Event.find().exec(function(err, events) {
-    res.render('auth/events/', {events: events});
+  var id = req.params.id;
+  Exhibition.findById(id).exec(function(err, exhibition) {
+    Event.find().where('exhibition').equals(exhibition._id).exec(function(err, events) {
+      res.render('auth/events/', {exhibition: exhibition, events: events});
+    });
   });
 }
 

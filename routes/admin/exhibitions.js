@@ -1,4 +1,4 @@
-var Category = require('../models/main.js').Category;
+var Exhibition = require('../../models/main.js').Exhibition;
 
 
 // ------------------------
@@ -23,57 +23,57 @@ var checkNested = function (obj, layers) {
 
 
 // ------------------------
-// *** Admin Categorys Block ***
+// *** Admin Exhibitions Block ***
 // ------------------------
 
 
 exports.list = function(req, res) {
-  Category.find().exec(function(err, categorys) {
-    res.render('auth/categorys/', {categorys: categorys});
+  Exhibition.find().exec(function(err, exhibitions) {
+    res.render('auth/exhibitions/', {exhibitions: exhibitions});
   });
 }
 
 
 // ------------------------
-// *** Add Categorys Block ***
+// *** Add Exhibitions Block ***
 // ------------------------
 
 
 exports.add = function(req, res) {
-  res.render('auth/categorys/add.jade');
+  res.render('auth/exhibitions/add.jade');
 }
 
 exports.add_form = function(req, res) {
   var post = req.body;
 
-  var category = new Category();
+  var exhibition = new Exhibition();
 
   var locales = post.en ? ['ru', 'en'] : ['ru'];
 
   locales.forEach(function(locale) {
     checkNested(post, [locale, 'title'])
-      && category.setPropertyLocalised('title', post[locale].title, locale);
+      && exhibition.setPropertyLocalised('title', post[locale].title, locale);
 
     checkNested(post, [locale, 'description'])
-      && category.setPropertyLocalised('description', post[locale].description, locale);
+      && exhibition.setPropertyLocalised('description', post[locale].description, locale);
   });
 
-  category.save(function(err, category) {
-    res.redirect('/auth/categorys');
+  exhibition.save(function(err, exhibition) {
+    res.redirect('/auth/exhibitions');
   });
 }
 
 
 // ------------------------
-// *** Edit Categorys Block ***
+// *** Edit Exhibitions Block ***
 // ------------------------
 
 
 exports.edit = function(req, res) {
   var id = req.params.id;
 
-  Category.findById(id).exec(function(err, category) {
-    res.render('auth/categorys/edit.jade', {category: category});
+  Exhibition.findById(id).exec(function(err, exhibition) {
+    res.render('auth/exhibitions/edit.jade', {exhibition: exhibition});
   });
 }
 
@@ -81,33 +81,33 @@ exports.edit_form = function(req, res) {
   var post = req.body;
   var id = req.params.id;
 
-  Category.findById(id).exec(function(err, category) {
+  Exhibition.findById(id).exec(function(err, exhibition) {
 
     var locales = post.en ? ['ru', 'en'] : ['ru'];
 
     locales.forEach(function(locale) {
       checkNested(post, [locale, 'title'])
-        && category.setPropertyLocalised('title', post[locale].title, locale);
+        && exhibition.setPropertyLocalised('title', post[locale].title, locale);
 
       checkNested(post, [locale, 'description'])
-        && category.setPropertyLocalised('description', post[locale].description, locale);
+        && exhibition.setPropertyLocalised('description', post[locale].description, locale);
     });
 
-    category.save(function(err, category) {
-      res.redirect('/auth/categorys');
+    exhibition.save(function(err, exhibition) {
+      res.redirect('/auth/exhibitions');
     });
   });
 }
 
 
 // ------------------------
-// *** Remove Categorys Block ***
+// *** Remove Exhibitions Block ***
 // ------------------------
 
 
 exports.remove = function(req, res) {
   var id = req.body.id;
-  Category.findByIdAndRemove(id, function() {
+  Exhibition.findByIdAndRemove(id, function() {
     res.send('ok');
   });
 }

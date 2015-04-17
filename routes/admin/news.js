@@ -1,4 +1,4 @@
-var News = require('../models/main.js').News;
+var News = require('../../models/main.js').News;
 
 
 // ------------------------

@@ -1,0 +1,26 @@
+extends ../../layout
+
+block title
+	title ВЫСТАВКИ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/lists.js')
+
+block content
+	a.back_link(href='/auth') < Назад
+	.title ВЫСТАВКИ
+	br
+	a.add(href='/auth/exhibitions/add') добавить выставку
+	br
+	br
+	.main_menu_block
+		each exhibition in exhibitions
+			.exhibition
+				a.rm_exhibition(href='#', id=exhibition._id)= 'удалить '
+				!=' | '
+				a(href='/auth/exhibitions/edit/' + exhibition._id)= exhibition.i18n.title.get('ru')
+				!=' --> '
+				a(href='/auth/exhibitions/edit/' + exhibition._id + '/events/') события

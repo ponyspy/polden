@@ -10,10 +10,10 @@ block content_scripts
 	script(type='text/javascript', src='/build/js/lists.js')
 
 block content
-	a.back_link(href='/auth') < Назад
-	.title СОБЫТИЯ
+	a.back_link(href='/auth/exhibitions') < Назад
+	.title= 'СОБЫТИЯ ДЛЯ ВЫСТАВКИ ' + exhibition.i18n.title.get('ru').toUpperCase()
 	br
-	a.add(href='/auth/events/add') добавить событие
+	a.add(href='/auth/exhibitions/edit/' + exhibition._id + '/events/add') добавить событие
 	br
 	br
 	.main_menu_block
@@ -21,4 +21,4 @@ block content
 			.event
 				a.rm_event(href='#', id=event._id)= 'удалить '
 				!=' | '
-				a(href='/auth/events/edit/' + event._id)= event.title.ru
+				a(href='/auth/exhibitions/edit/' + exhibition._id + '/events/edit/' + event._id)= event.i18n.title.get('ru')

@@ -55,9 +55,10 @@ var schedule = require('./routes/schedule.js');
 var auth = require('./routes/auth.js');
 var content = require('./routes/content.js');
 var files = require('./routes/files.js');
-var admin_news = require('./routes/admin_news.js');
-var admin_events = require('./routes/admin_events.js');
-var admin_categorys = require('./routes/admin_categorys.js');
+var admin_news = require('./routes/admin/news.js');
+var admin_events = require('./routes/admin/events.js');
+var admin_categorys = require('./routes/admin/categorys.js');
+var admin_exhibitions = require('./routes/admin/exhibitions.js');
 
 
 // ------------------------
@@ -165,25 +166,42 @@ app.route('/auth/categorys/remove')
 	 .post(checkAuth, admin_categorys.remove);
 
 
-// === Admin events Route
-app.route('/auth/events').get(checkAuth, admin_events.list);
+// === Admin exhibitions Route
+app.route('/auth/exhibitions').get(checkAuth, admin_exhibitions.list);
 
 
-// === Admin @add events Route
-app.route('/auth/events/add')
+// === Admin @add exhibitions Route
+app.route('/auth/exhibitions/add')
+	 .get(checkAuth, admin_exhibitions.add)
+	 .post(checkAuth, admin_exhibitions.add_form);
+
+
+// === Admin @edit exhibitions Route
+app.route('/auth/exhibitions/edit/:id')
+	 .get(checkAuth, admin_exhibitions.edit)
+	 .post(checkAuth, admin_exhibitions.edit_form);
+
+
+// === Admin @remove exhibitions Route
+app.route('/auth/exhibitions/remove')
+	 .post(checkAuth, admin_exhibitions.remove);
+
+
+// === Admin exhibition events Route
+app.route('/auth/exhibitions/edit/:id/events/')
+	 .get(checkAuth, admin_events.list);
+
+
+// === Admin exhibition @add events Route
+app.route('/auth/exhibitions/edit/:id/events/add')
 	 .get(checkAuth, admin_events.add)
 	 .post(checkAuth, admin_events.add_form);
 
 
-// === Admin @edit events Route
-app.route('/auth/events/edit/:id')
+// === Admin exhibition @edit events Route
+app.route('/auth/exhibitions/edit/:id/events/edit/:event_id')
 	 .get(checkAuth, admin_events.edit)
 	 .post(checkAuth, admin_events.edit_form);
-
-
-// === Admin @remove events Route
-app.route('/auth/events/remove')
-	 .post(checkAuth, admin_events.remove);
 
 
 // === Auth Route
