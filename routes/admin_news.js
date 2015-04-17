@@ -2,6 +2,27 @@ var News = require('../models/main.js').News;
 
 
 // ------------------------
+// *** Handlers Block ***
+// ------------------------
+
+
+var checkNested = function (obj, layers) {
+
+  if (typeof layers == 'string') {
+    layers = layers.split('.');
+  }
+
+  for (var i = 0; i < layers.length; i++) {
+    if (!obj || !obj.hasOwnProperty(layers[i])) {
+      return false;
+    }
+    obj = obj[layers[i]];
+  }
+  return true;
+}
+
+
+// ------------------------
 // *** Admin News Block ***
 // ------------------------
 
@@ -31,9 +52,20 @@ exports.add_form = function(req, res) {
 
   var news = new News();
 
-  news.title.ru = post.ru.title;
-  news.s_title.ru = post.ru.s_title;
-  news.description.ru = post.ru.description;
+  var locales = post.en ? ['ru', 'en'] : ['ru'];
+
+  locales.forEach(function(locale) {
+    checkNested(post, [locale, 'title'])
+      && news.setPropertyLocalised('title', post[locale].title, locale);
+
+    checkNested(post, [locale, 's_title'])
+      && news.setPropertyLocalised('s_title', post[locale].s_title, locale);
+
+    checkNested(post, [locale, 'description'])
+      && news.setPropertyLocalised('description', post[locale].description, locale);
+  });
+
+
   news.date = new Date(Date.UTC(post.date.year, post.date.month, post.date.date, hours, minutes));
 
   news.save(function(err, news) {
@@ -63,9 +95,22 @@ exports.edit_form = function(req, res) {
   var minutes = date.getMinutes();
 
   News.findById(id).exec(function(err, news) {
-    news.title.ru = post.ru.title;
-    news.s_title.ru = post.ru.s_title;
-    news.description.ru = post.ru.description;
+
+
+    var locales = post.en ? ['ru', 'en'] : ['ru'];
+
+    locales.forEach(function(locale) {
+      checkNested(post, [locale, 'title'])
+        && news.setPropertyLocalised('title', post[locale].title, locale);
+
+      checkNested(post, [locale, 's_title'])
+        && news.setPropertyLocalised('s_title', post[locale].s_title, locale);
+
+      checkNested(post, [locale, 'description'])
+        && news.setPropertyLocalised('description', post[locale].description, locale);
+    });
+
+
     news.date = new Date(Date.UTC(post.date.year, post.date.month, post.date.date, hours, minutes));
 
     news.save(function(err, news) {

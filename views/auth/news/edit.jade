@@ -28,13 +28,13 @@ block content
 		.title РЕДАКТИРОВАТЬ НОВОСТЬ
 		form(action="", method="post")
 			.form_title Заголовок:
-			input.ru(type="text", name="ru[title]", value=news.title.ru)
+			input.ru(type="text", name="ru[title]", value=news.i18n.title.get('ru'))
 			input.en(type="text", name="en[title]", disabled)
 			.form_title Подзаголовок:
-			input.ru(type="text", name="ru[s_title]", value=news.s_title.ru)
+			input.ru(type="text", name="ru[s_title]", value=news.i18n.s_title.get('ru'))
 			input.en(type="text", name="en[s_title]", disabled)
 			.form_title Описание:
-			textarea.ru(name="ru[description]", rows="8",)= news.description.ru
+			textarea.ru(name="ru[description]", rows="8",)= news.i18n.description.get('ru')
 			textarea.en(name="en[description]", rows="8", disabled)
 			.form_title Дата:
 			select(name='date[date]')

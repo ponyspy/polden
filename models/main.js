@@ -62,6 +62,6 @@ categorySchema.plugin(mongooseLocale);
 
 module.exports.User = mongoose.model('User', userSchema);
 module.exports.News = mongoose.model('News', newsSchema);
-module.exports.Event = mongoose.model('Exhibition', exhibitionSchema);
+module.exports.Exhibition = mongoose.model('Exhibition', exhibitionSchema);
 module.exports.Event = mongoose.model('Event', eventSchema);
-module.exports.Event = mongoose.model('Category', categorySchema);
+module.exports.Category = mongoose.model('Category', categorySchema);

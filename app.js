@@ -57,6 +57,7 @@ var content = require('./routes/content.js');
 var files = require('./routes/files.js');
 var admin_news = require('./routes/admin_news.js');
 var admin_events = require('./routes/admin_events.js');
+var admin_categorys = require('./routes/admin_categorys.js');
 
 
 // ------------------------
@@ -139,8 +140,29 @@ app.route('/auth/news/edit/:id')
 
 
 // === Admin @remove news Route
-app.route('/auth/news/remove')
+app.route('/auth/categorys/remove')
 	 .post(checkAuth, admin_news.remove);
+
+
+// === Admin categorys Route
+app.route('/auth/categorys').get(checkAuth, admin_categorys.list);
+
+
+// === Admin @add categorys Route
+app.route('/auth/categorys/add')
+	 .get(checkAuth, admin_categorys.add)
+	 .post(checkAuth, admin_categorys.add_form);
+
+
+// === Admin @edit categorys Route
+app.route('/auth/categorys/edit/:id')
+	 .get(checkAuth, admin_categorys.edit)
+	 .post(checkAuth, admin_categorys.edit_form);
+
+
+// === Admin @remove categorys Route
+app.route('/auth/categorys/remove')
+	 .post(checkAuth, admin_categorys.remove);
 
 
 // === Admin events Route
@@ -214,36 +236,36 @@ app.route('/test/schedule').get(schedule.main_test);
 // ------------------------
 
 
-app.use(function(req, res, next) {
-	var accept = accepts(req);
-	res.status(404);
+// app.use(function(req, res, next) {
+// 	var accept = accepts(req);
+// 	res.status(404);
 
-	// respond with html page
-	if (accept.types('html')) {
-		res.render('error', { url: req.url, status: 404 });
-		return;
-	}
+// 	// respond with html page
+// 	if (accept.types('html')) {
+// 		res.render('error', { url: req.url, status: 404 });
+// 		return;
+// 	}
 
-	// respond with json
-	if (accept.types('json')) {
-			res.send({
-			error: {
-				status: 'Not found'
-			}
-		});
-		return;
-	}
+// 	// respond with json
+// 	if (accept.types('json')) {
+// 			res.send({
+// 			error: {
+// 				status: 'Not found'
+// 			}
+// 		});
+// 		return;
+// 	}
 
-	// default to plain-text
-	res.type('txt').send('Not found');
-});
+// 	// default to plain-text
+// 	res.type('txt').send('Not found');
+// });
 
-app.use(function(err, req, res, next) {
-	var status = err.status || 500;
+// app.use(function(err, req, res, next) {
+// 	var status = err.status || 500;
 
-	res.status(status);
-	res.render('error', { error: err, status: status });
-});
+// 	res.status(status);
+// 	res.render('error', { error: err, status: status });
+// });
 
 
 // ------------------------

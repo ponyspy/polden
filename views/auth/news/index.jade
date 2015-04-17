@@ -21,4 +21,4 @@ block content
 			.news
 				a.rm_news(href='#', id=item._id)= 'удалить '
 				!=' | '
-				a(href='/auth/news/edit/' + item._id)= item.title.ru
+				a(href='/auth/news/edit/' + item._id)= item.i18n.title.get('ru')
