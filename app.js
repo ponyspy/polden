@@ -246,7 +246,7 @@ app.route('/test/events').get(schedule.events_test);
 
 
 // === Schedule Route
-app.route('/test/schedule').get(schedule.main_test);
+app.route('/test/schedule/:id').get(schedule.main_test);
 
 
 // ------------------------

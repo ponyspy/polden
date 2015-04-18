@@ -24,5 +24,5 @@ block content
 							- var m_minutes = event.time.minutes <= 9 ? '0' + event.time.minutes : event.time.minutes
 							.event_time= h_hours + ':' + m_minutes
 							.event_hall: .inner= event.hall.ru
-						.event_title= event.title.ru
-						.event_age= event.age.ru
+						.event_title= event.title[0].value
+						.event_age= event.age[0].value

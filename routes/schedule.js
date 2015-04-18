@@ -1,19 +1,11 @@
+var ObjectId = require('mongoose').Types.ObjectId;
 var Event = require('../models/main.js').Event;
 
 exports.main_test = function(req, res) {
-	var start = new Date(Date.UTC(2014, 0, 1));
-	var end = new Date(Date.UTC(2014, 11, 30));
-
 	Event.aggregate()
-		.match({'exhibition': req.params.id})
+		.match({'exhibition': new ObjectId(req.params.id) })
 		.unwind('schedule')
 		.sort({'schedule': 1})
-		.match({
-			'schedule': {
-				$gte: start,
-				$lte: end
-			}
-		})
 		.group({
 			'_id': {
 				year: { $year: '$schedule' },
@@ -42,7 +34,7 @@ exports.main_test = function(req, res) {
 
 exports.events_test = function(req, res) {
 	Event.aggregate()
-		.match({'exhibition': req.params.id})
+		.match({'exhibition': new ObjectId(req.params.id) })
 		.unwind('categorys')
 		.sort({'schedule': 1})
 		.group({

@@ -16,7 +16,7 @@ block content
 			.news_date_title= date._id.day + '.' + date._id.month
 			each item in date.news
 				.news_item
-					.news_title= item.title.ru
-					.news_s_title= item.s_title.ru
+					.news_title= item.title[0].value
+					.news_s_title= item.s_title[0].value
 					.news_description
-						!= item.description.ru
+						!= item.description[0].value
