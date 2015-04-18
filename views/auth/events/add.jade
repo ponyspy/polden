@@ -20,17 +20,13 @@ block content
 		form(action="", method="post")
 			input(type='hidden', name='exhibition', value=exhibition._id)
 			.form_title Заголовок:
-			input.ru(type="text", name="ru[title]",)
-			input.en(type="text", name="en[title]", disabled)
+			+form_text_single('title')
 			.form_title Зал:
-			input.ru(type="text", name="ru[hall]",)
-			input.en(type="text", name="en[hall]", disabled)
+			+form_text_single('hall')
 			.form_title Описание:
-			textarea.ru(name="ru[description]", rows="8",)
-			textarea.en(name="en[description]", rows="8", disabled)
+			+form_text_multi('description')
 			.form_title Возраст:
-			input.ru(type="text", name="ru[age]",)
-			input.en(type="text", name="en[age]", disabled)
+			+form_text_single('age')
 			.form_title Категории:
 			+form_multiple_select('categorys', exhibition.categorys)
 			//- .form_title Категория:

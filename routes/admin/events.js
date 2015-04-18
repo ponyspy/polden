@@ -96,15 +96,18 @@ exports.add_form = function(req, res) {
 
 exports.edit = function(req, res) {
 	var id = req.params.id;
+	var event_id = req.params.event_id;
 
-	Event.findById(id).exec(function(err, event) {
-		res.render('auth/events/edit.jade', {event: event});
+	Event.findById(event_id).exec(function(err, event) {
+		Exhibition.findById(id).populate('categorys').exec(function(err, exhibition) {
+			res.render('auth/events/edit.jade', {event: event, exhibition: exhibition});
+		});
 	});
 }
 
 
 exports.edit_form = function(req, res) {
-	var id = req.params.id;
+	var event_id = req.params.event_id;
 	var post = req.body;
 	var schedule = [];
 	var sh = post.schedule;
@@ -114,12 +117,27 @@ exports.edit_form = function(req, res) {
 		schedule.push(date);
 	});
 
-	Event.findById(id).exec(function(err, event) {
-		event.title.ru = post.ru.title;
-		event.description.ru = post.ru.description;
-		event.hall.ru = post.ru.hall;
-		event.age.ru = post.ru.age;
-		event.category = post.category;
+
+	Event.findById(event_id).exec(function(err, event) {
+
+		var locales = post.en ? ['ru', 'en'] : ['ru'];
+
+		locales.forEach(function(locale) {
+			checkNested(post, [locale, 'title'])
+				&& event.setPropertyLocalised('title', post[locale].title, locale);
+
+			checkNested(post, [locale, 'description'])
+				&& event.setPropertyLocalised('description', post[locale].description, locale);
+
+			checkNested(post, [locale, 'hall'])
+				&& event.setPropertyLocalised('hall', post[locale].hall, locale);
+
+			checkNested(post, [locale, 'age'])
+				&& event.setPropertyLocalised('age', post[locale].age, locale);
+		});
+
+
+		event.categorys = post.categorys;
 		event.schedule = schedule;
 
 		event.save(function(err, event) {
