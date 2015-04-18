@@ -39,14 +39,15 @@ $(document).ready(function() {
 
 
 	function snakeForward () {
-		var snake = $('.snake');
-		snake.first().clone()
+		var $snake = $(this).parent('.snake_outer').children('.snake');
+		$snake.first().clone()
 			.find('option').prop('selected', false).end()
-			.insertAfter(snake.last());
+			.insertAfter($snake.last());
 	}
 
 	function snakeBack () {
-		if ($('.snake').size() == 1) return null;
+		var $snake = $(this).closest('.snake_outer').children('.snake');
+		if ($snake.size() == 1) return null;
 		$(this).parent('.snake').remove();
 	}
 
@@ -59,8 +60,8 @@ $(document).ready(function() {
 	$('form').submit(function(event) {
 		var areas = $('textarea');
 		areas.each(function() {
-			var newValue = $(this).val().replace(/\n/g, "<br />");
-			$(this).val(newValue);
+			var newValue = $(this).val().replace(/\n/g, '<br />');
+			$(this).val(str);
 		});
 		$('form').submit();
 	});

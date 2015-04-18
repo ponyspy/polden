@@ -102,9 +102,10 @@ exports.edit_form = function(req, res) {
 				&& exhibition.setPropertyLocalised('description', post[locale].description, locale);
 		});
 
-		exhibition.interval.start = new Date(post.date_start.year, post.date_start.month, post.date_start.date);
-		exhibition.interval.end = new Date(post.date_end.year, post.date_end.month, post.date_end.date);
+		exhibition.interval.start = new Date(Date.UTC(post.date_start.year, post.date_start.month, post.date_start.date));
+		exhibition.interval.end = new Date(Date.UTC(post.date_end.year, post.date_end.month, post.date_end.date));
 		exhibition.categorys = post.categorys;
+		console.log(post)
 
 		exhibition.save(function(err, exhibition) {
 			res.redirect('/auth/exhibitions');
