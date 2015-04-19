@@ -36,7 +36,6 @@ exports.events_test = function(req, res) {
 	Event.aggregate()
 		.match({'exhibition': new ObjectId(req.params.id) })
 		.unwind('categorys')
-		.sort({'schedule': 1})
 		.group({
 			'_id': {
 				'category': '$categorys'
@@ -46,18 +45,12 @@ exports.events_test = function(req, res) {
 					title: '$title',
 					hall: '$hall',
 					age: '$age',
-					date: {
-						month: { $month: '$schedule' },
-						date: { $dayOfMonth: '$schedule' },
-					},
-					time: {
-						hours: { $hour: '$schedule' },
-						minutes: { $minute: '$schedule' }
-					}
+					schedule: '$schedule',
 				}
 			}
 		})
 		.exec(function(err, categorys) {
+			console.log(categorys)
 			res.render('schedule/test_events.jade', {categorys: categorys});
 		});
 }

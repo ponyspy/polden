@@ -242,7 +242,7 @@ app.route('/robots.txt').get(files.robots);
 
 
 // === Events Route
-app.route('/test/events').get(schedule.events_test);
+app.route('/test/events/:id').get(schedule.events_test);
 
 
 // === Schedule Route
