@@ -1,5 +1,20 @@
 var ObjectId = require('mongoose').Types.ObjectId;
 var Event = require('../models/main.js').Event;
+var Category = require('../models/main.js').Category;
+
+function toMatrix(arr, rowCount) {
+	var row = 0, matrix = [], curIndex = 0;
+	var rows = Math.ceil(arr.length/rowCount);
+
+	for (var i = 0; i < arr.length; i++) {
+		matrix[row] === undefined ? matrix[row] = [] : true
+		matrix[row].push(arr[i]);
+		row++;
+		row > rowCount ? row = 0 : true
+	}
+
+	return matrix;
+}
 
 exports.main_test = function(req, res) {
 	Event.aggregate()
@@ -43,6 +58,7 @@ exports.events_test = function(req, res) {
 			'events': {
 				$push: {
 					title: '$title',
+					description: '$description',
 					hall: '$hall',
 					age: '$age',
 					schedule: '$schedule',
@@ -50,8 +66,10 @@ exports.events_test = function(req, res) {
 			}
 		})
 		.exec(function(err, categorys) {
-			console.log(categorys)
-			res.render('schedule/test_events.jade', {categorys: categorys});
+			Category.populate(categorys, {path: '_id.category', select: 'title'}, function(err, categorys) {
+				var columns = toMatrix(categorys, 2);
+				res.render('schedule/test_events.jade', {columns: columns});
+			});
 		});
 }
 

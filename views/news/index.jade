@@ -13,7 +13,7 @@ block content
 	//- - var months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
 	.news_date_block
 		each date in dates
-			.news_date_title= date._id.day + '.' + date._id.month
+			.news_date_title= ('0' + date._id.day).slice(-2) + '.' + ('0' + date._id.month).slice(-2)
 			each item in date.news
 				.news_item
 					.news_title= item.title[0].value
