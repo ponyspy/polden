@@ -27,7 +27,7 @@ block content
 			.form_title Возраст:
 			+form_text_single('age', event)
 			.form_title Категории:
-			+form_multiple_select('categorys', exhibition.categorys)
+			+form_multiple_select('categorys', exhibition.categorys, event.categorys)
 			//- select(name='category')
 			//- 	option(value='children', selected=event.category == 'children') детский праздник
 			//- 	option(value='performance', selected=event.category == 'performance') спектакль

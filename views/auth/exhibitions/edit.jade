@@ -34,7 +34,7 @@ block content
 			.form_title Дата конца:
 			+form_calendar('date_end', exhibition.interval.end)
 			.form_title Категории:
-			+form_multiple_select('categorys', categorys)
+			+form_multiple_select('categorys', categorys, exhibition.categorys)
 			br
 			br
 			input(type='submit', value='отправить')
