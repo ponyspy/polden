@@ -24,7 +24,7 @@ block content_right
 					a(href='/events/' + exhibition._id)= exhibition.title[0].value.toUpperCase()
 
 block content
-	.coontent_title МЕРОПРИЯТИЯ
+	.coontent_title= current.title[0].value.toUpperCase()
 	each column in columns
 		.events_column
 			each category in column
