@@ -1,0 +1,28 @@
+extends ../layout
+
+block title
+	title КОНТАКТЫ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/contacts.css' + version)
+
+block content_scripts
+	script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?sensor=false')
+	script(type='text/javascript', src='/build/js/g_maps.js' + version)
+	script(type='text/javascript', src='/build/js/contacts.js' + version)
+
+
+block content
+	.content_title СХЕМА ПРОЕЗДА
+	.content_s_title Калужская площадь, 1
+	.content_body 2 минуты от ст. м Октябрьская кольцевой или радиальной линии
+	#map-canvas
+	.content_title ЧАСЫ РАБОТЫ
+	p 10:00–20:00 понедельник –суббота
+	p 11:00 – 17:00 воскресенье
+	p санитарный день последняя пятница месяца
+
+	p по всем вопросам пишите на bibliogid@gmail.com
+	p телефон
+	p Координатор выставки Ольга Виноградова (499) 230-00-93 (доб. 225)
+	p Справочная РГДБ (499) 230-00-93 (доб. 233)

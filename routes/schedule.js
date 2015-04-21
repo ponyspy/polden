@@ -16,7 +16,7 @@ function toMatrix(arr, rowCount) {
 	return matrix;
 }
 
-exports.main_test = function(req, res) {
+exports.main = function(req, res) {
 	Event.aggregate()
 		.match({'exhibition': new ObjectId(req.params.id) })
 		.unwind('schedule')
@@ -43,11 +43,11 @@ exports.main_test = function(req, res) {
 		})
 		.sort({'_id.year': 1, '_id.month': 1, '_id.date': 1})
 		.exec(function(err, dates) {
-			res.render('schedule/test_index.jade', {dates: dates});
+			res.render('schedule/index.jade', {dates: dates});
 		});
 }
 
-exports.events_test = function(req, res) {
+exports.events = function(req, res) {
 	Event.aggregate()
 		.match({'exhibition': new ObjectId(req.params.id) })
 		.unwind('categorys')
@@ -68,15 +68,15 @@ exports.events_test = function(req, res) {
 		.exec(function(err, categorys) {
 			Category.populate(categorys, {path: '_id.category', select: 'title'}, function(err, categorys) {
 				var columns = toMatrix(categorys, 2);
-				res.render('schedule/test_events.jade', {columns: columns});
+				res.render('schedule/events.jade', {columns: columns});
 			});
 		});
 }
 
-exports.main = function(req, res) {
-	res.render('schedule');
+exports.main_bak = function(req, res) {
+	res.render('schedule/index_bak.jade');
 }
 
-exports.events = function(req, res) {
-	res.render('schedule/events.jade');
+exports.events_bak = function(req, res) {
+	res.render('schedule/events_bak.jade');
 }

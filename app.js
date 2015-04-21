@@ -117,11 +117,11 @@ app.route('/news').get(news.main);
 
 
 // === Events Route
-app.route('/events').get(schedule.events);
+app.route('/events/:id').get(schedule.events);
 
 
 // === Schedule Route
-app.route('/schedule').get(schedule.main);
+app.route('/schedule/:id').get(schedule.main);
 
 
 // === Admin news Route
@@ -224,8 +224,12 @@ app.route('/registr')
 	 .post(auth.registr_form);
 
 
-// === Contacts Route
+// === About Route
 app.route('/about').get(content.about);
+
+
+// === Contacts Route
+app.route('/contacts').get(content.contacts);
 
 
 // === Files #sitemap.xml Route
@@ -242,11 +246,11 @@ app.route('/robots.txt').get(files.robots);
 
 
 // === Events Route
-app.route('/test/events/:id').get(schedule.events_test);
+app.route('/bak/events').get(schedule.events_bak);
 
 
 // === Schedule Route
-app.route('/test/schedule/:id').get(schedule.main_test);
+app.route('/bak/schedule').get(schedule.main_bak);
 
 
 // ------------------------
