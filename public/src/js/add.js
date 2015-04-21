@@ -60,8 +60,8 @@ $(document).ready(function() {
 	$('form').submit(function(event) {
 		var areas = $('textarea');
 		areas.each(function() {
-			var newValue = $(this).val().replace(/\n/g, '<br />');
-			$(this).val(str);
+			var newValue = $(this).val().replace(/\n/g, "<br />");
+			$(this).val(newValue);
 		});
 		$('form').submit();
 	});

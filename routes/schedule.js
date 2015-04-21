@@ -85,7 +85,9 @@ exports.main = function(req, res) {
 
 
 exports.events_redirect = function(req, res) {
-	res.send('ok');
+	Exhibition.find().sort('-interval.start -interval.end').exec(function(err, exhibitions) {
+		res.redirect('/events/' + exhibitions[0]._id);
+	});
 }
 
 

@@ -38,5 +38,5 @@ block content
 									each date in event.schedule
 										.event_date= ('0' + date.getUTCDate()).slice(-2) + '.' + ('0' + (date.getUTCMonth() + 1)).slice(-2) + ' в ' + ('0' + date.getUTCHours()).slice(-2) + ':' + ('0' + date.getUTCMinutes()).slice(-2)
 								.event_hall= event.hall[0].value
-								.event_description= event.description[0].value
+								.event_description: != event.description[0].value
 								.event_age= event.age[0].value
