@@ -30,9 +30,9 @@ block content
 			.form_title Описание:
 			+form_text_multi('description', exhibition)
 			.form_title Дата начала:
-			+form_calendar('date_start')
+			+form_calendar('date_start', exhibition.interval.start)
 			.form_title Дата конца:
-			+form_calendar('date_end')
+			+form_calendar('date_end', exhibition.interval.end)
 			.form_title Категории:
 			+form_multiple_select('categorys', categorys)
 			br
