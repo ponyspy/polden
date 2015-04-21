@@ -10,7 +10,8 @@ block content_scripts
 	script(type='text/javascript', src='/build/js/schedule.js' + version)
 
 block content
-	- var days = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота']
+	.coontent_title РАСПИСАНИЕ
+	- var days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
 	each date in dates
 		- var d_date = date._id.date <= 9 ? '0' + date._id.date : date._id.date
 		- var m_month = date._id.month <= 9 ? '0' + date._id.month : date._id.month
