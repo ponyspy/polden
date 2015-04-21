@@ -16,7 +16,7 @@ block content_right
 		.categorys_block_list
 			.category_item.all ВСЕ
 			each category in current.categorys
-				.category_item(class=category._id)= category.title[0].value.toUpperCase()
+				.category_item(class=category._id.toString())= category.title[0].value.toUpperCase()
 		.exhibitions_block
 			.exhibitions_block_title ВЫСТАВКИ
 			.exhibitions_list
@@ -29,7 +29,7 @@ block content
 	each column in columns
 		.events_column
 			each category in column
-				.events_group(class=category._id.category._id.toString())
+				.events_group(class=category._id.category._id)
 					.events_group_title= category._id.category.title[0].value.toUpperCase()
 					.events_block
 						each event in category.events
