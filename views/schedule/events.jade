@@ -9,6 +9,20 @@ block content_style
 block content_scripts
 	script(type='text/javascript', src='/build/js/events.js' + version)
 
+block content_right
+	.menu_right
+		.categorys_block
+		.categorys_block_title КАТЕГОРИИ
+		.categorys_block_list
+			.category_item.all ВСЕ
+			each category in current.categorys
+				.category_item(class=category._id)= category.title[0].value.toUpperCase()
+		.exhibitions_block
+			.exhibitions_block_title ВЫСТАВКИ
+			.exhibitions_list
+				each exhibition in exhibitions
+					a(href='/events/' + exhibition._id)= exhibition.title[0].value.toUpperCase()
+
 block content
 	.coontent_title МЕРОПРИЯТИЯ
 	each column in columns

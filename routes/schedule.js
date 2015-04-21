@@ -85,8 +85,9 @@ exports.main = function(req, res) {
 
 
 exports.events = function(req, res) {
+	var id = req.params.id;
 	Event.aggregate()
-		.match({'exhibition': new ObjectId(req.params.id) })
+		.match({'exhibition': new ObjectId(id) })
 		.unwind('categorys')
 		.group({
 			'_id': {
@@ -104,9 +105,14 @@ exports.events = function(req, res) {
 		})
 		.exec(function(err, categorys) {
 			Category.populate(categorys, {path: '_id.category', select: 'title'}, function(err, categorys) {
-				Exhibition.findById(req.params.id).select('categorys').exec(function(err, exhibition) {
+				Exhibition.find().exec(function(err, exhibitions) {
 					var columns = toMatrix(categorys, 2);
-					res.render('schedule/events.jade', {columns: columns, categorys: exhibition.categorys});
+					var current = exhibitions.filter(function(exhibition) {
+						return exhibition._id.toString() == id;
+					});
+					Category.populate(current, {path: 'categorys', select: 'title'}, function(err, current) {
+						res.render('schedule/events.jade', {columns: columns, exhibitions: exhibitions, current: current[0]});
+					});
 				});
 			});
 		});
