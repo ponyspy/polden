@@ -117,11 +117,12 @@ app.route('/news').get(news.main);
 
 
 // === Events Route
+app.route('/events').get(schedule.events_redirect);
 app.route('/events/:id').get(schedule.events);
 
 
 // === Schedule Route
-app.route('/schedule').get(schedule.current_redirect);
+app.route('/schedule').get(schedule.main_redirect);
 app.route('/schedule/:year/:month').get(schedule.main);
 
 

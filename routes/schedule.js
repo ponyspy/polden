@@ -29,7 +29,7 @@ function toMatrix(arr, rowCount) {
 // ------------------------
 
 
-exports.current_redirect = function(req, res) {
+exports.main_redirect = function(req, res) {
 	var date = new Date();
 	var year = date.getFullYear();
 	var month = date.getMonth();
@@ -74,7 +74,7 @@ exports.main = function(req, res) {
 		})
 		.sort({'_id.year': 1, '_id.month': 1, '_id.date': 1})
 		.exec(function(err, dates) {
-			res.render('schedule/index.jade', {dates: dates});
+			res.render('schedule/index.jade', {dates: dates, current: start});
 		});
 }
 
@@ -82,6 +82,11 @@ exports.main = function(req, res) {
 // ------------------------
 // *** Events Block ***
 // ------------------------
+
+
+exports.events_redirect = function(req, res) {
+	res.send('ok');
+}
 
 
 exports.events = function(req, res) {
