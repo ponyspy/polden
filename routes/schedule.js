@@ -1,6 +1,7 @@
 var ObjectId = require('mongoose').Types.ObjectId;
 var Event = require('../models/main.js').Event;
 var Category = require('../models/main.js').Category;
+var Exhibition = require('../models/main.js').Exhibition;
 
 function toMatrix(arr, rowCount) {
 	var row = 0, matrix = [], curIndex = 0;
@@ -67,8 +68,10 @@ exports.events = function(req, res) {
 		})
 		.exec(function(err, categorys) {
 			Category.populate(categorys, {path: '_id.category', select: 'title'}, function(err, categorys) {
-				var columns = toMatrix(categorys, 2);
-				res.render('schedule/events.jade', {columns: columns});
+				Exhibition.findById(req.params.id).select('categorys').exec(function(err, exhibition) {
+					var columns = toMatrix(categorys, 2);
+					res.render('schedule/events.jade', {columns: columns, categorys: exhibition.categorys});
+				});
 			});
 		});
 }
