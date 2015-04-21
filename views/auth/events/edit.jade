@@ -20,31 +20,32 @@ block content
 		form(action="", method="post")
 			.form_title Заголовок:
 			+form_text_single('title', event)
-			.form_title Зал:
-			+form_text_single('hall', event)
 			.form_title Описание:
 			+form_text_multi('description', event)
 			.form_title Возраст:
 			+form_text_single('age', event)
 			.form_title Категории:
 			+form_multiple_select('categorys', exhibition.categorys, event.categorys)
-			//- select(name='category')
-			//- 	option(value='children', selected=event.category == 'children') детский праздник
-			//- 	option(value='performance', selected=event.category == 'performance') спектакль
-			//- 	option(value='tour', selected=event.category == 'tour') экскурсия
-			//- 	option(value='writers', selected=event.category == 'writers') встреча с писателями
-			//- 	option(value='music', selected=event.category == 'music') музыка
-			//- 	option(value='master_class', selected=event.category == 'master_class') мастер-класс/студия
-			//- 	option(value='literature', selected=event.category == 'literature') литературное занятие
-			//- 	option(value='lecture', selected=event.category == 'lecture') лекция
-			//- 	option(value='roundtable', selected=event.category == 'roundtable') круглый стол
-			//- 	option(value='film', selected=event.category == 'film') кинопоказ
-			//- 	option(value='filmstrip', selected=event.category == 'filmstrip') диафильм
-			//- 	option(value='animation', selected=event.category == 'animation') мультипликация
-			//- 	option(value='animation_lecture', selected=event.category == 'animation_lecture') мультипликация/лекция
-			//- 	option(value='recital', selected=event.category == 'recital') творческий вечер
-				//- .form_title Фото:
-				//- input(type="file", name="photo")
+			.form_title Зал:
+			select(name='hall')
+				option(value='lobby', selected=event.hall=='lobby') Вестибюль
+				option(value='knigovorot', selected=event.hall=='knigovorot') Книговорот
+				option(value='small_exhibition_hall', selected=event.hall=='small_exhibition_hall') Малый выставочный зал
+				option(value='mediaklub', selected=event.hall=='mediaklub') Медиаклуб (комната 126)
+				option(value='directors_gallery', selected=event.hall=='directors_gallery') Директорская галерея
+				option(value='conference_hall', selected=event.hall=='conference_hall') Конференц-зал
+				option(value='central_gallery', selected=event.hall=='central_gallery') Центральная галерея
+				option(value='childrens_workshop', selected=event.hall=='childrens_workshop') Детская мастерская
+				option(value='large_exhibition_hall', selected=event.hall=='large_exhibition_hall') Большой выставочный зал
+				option(value='green_room', selected=event.hall=='green_room') Зелёная комната
+				option(value='story_room', selected=event.hall=='story_room') Комната сказок
+				option(value='favorite_activities_room', selected=event.hall=='favorite_activities_room') Комната любимых занятий
+				option(value='concert_hall', selected=event.hall=='concert_hall') Концертный зал
+				option(value='foyer_of_concert_hall', selected=event.hall=='foyer_of_concert_hall') Фойе концертного зала
+				option(value='upper_gallery', selected=event.hall=='upper_gallery') Верхняя галерея
+				option(value='pushkins_room', selected=event.hall=='pushkins_room') Пушкинская комната
+				option(value='creative_activities_room', selected=event.hall=='creative_activities_room') Комната творческих занятий
+				option(value='family_reading_room', selected=event.hall=='family_reading_room') Комната семейного чтения
 			.form_title Расписание:
 			.snake_outer
 				if event.schedule.length > 0

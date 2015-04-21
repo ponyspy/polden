@@ -32,7 +32,7 @@ var exhibitionSchema = new Schema({
 var eventSchema = new Schema({
 	title: { type: String, trim: true, locale: true },
 	description: { type: String, trim: true, locale: true },
-	hall: { type: String, trim: true, locale: true },
+	hall: String,
 	age: { type: String, trim: true, locale: true },
 	exhibition: { type: Schema.Types.ObjectId, ref: 'Exhibition' },
 	categorys: [{ type: Schema.Types.ObjectId, ref: 'Category' }],

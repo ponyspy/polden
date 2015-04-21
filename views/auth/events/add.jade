@@ -21,32 +21,32 @@ block content
 			input(type='hidden', name='exhibition', value=exhibition._id)
 			.form_title Заголовок:
 			+form_text_single('title')
-			.form_title Зал:
-			+form_text_single('hall')
 			.form_title Описание:
 			+form_text_multi('description')
 			.form_title Возраст:
 			+form_text_single('age')
 			.form_title Категории:
 			+form_multiple_select('categorys', exhibition.categorys)
-			//- .form_title Категория:
-			//- select(name='category')
-			//- 	option(value='children') детский праздник
-			//- 	option(value='performance') спектакль
-			//- 	option(value='tour') экскурсия
-			//- 	option(value='writers') встреча с писателями
-			//- 	option(value='music') музыка
-			//- 	option(value='master_class') мастер-класс/студия
-			//- 	option(value='literature') литературное занятие
-			//- 	option(value='lecture') лекция
-			//- 	option(value='roundtable') круглый стол
-			//- 	option(value='film') кинопоказ
-			//- 	option(value='filmstrip') диафильм
-			//- 	option(value='animation') мультипликация
-			//- 	option(value='animation_lecture') мультипликация/лекция
-			//- 	option(value='recital') творческий вечер
-			//- .form_title Фото:
-			//- input(type="file", name="photo")
+			.form_title Зал:
+			select(name='hall')
+				option(value='lobby') Вестибюль
+				option(value='knigovorot') Книговорот
+				option(value='small_exhibition_hall') Малый выставочный зал
+				option(value='mediaklub') Медиаклуб (комната 126)
+				option(value='directors_gallery') Директорская галерея
+				option(value='conference_hall') Конференц-зал
+				option(value='central_gallery') Центральная галерея
+				option(value='childrens_workshop') Детская мастерская
+				option(value='large_exhibition_hall') Большой выставочный зал
+				option(value='green_room') Зелёная комната
+				option(value='story_room') Комната сказок
+				option(value='favorite_activities_room') Комната любимых занятий
+				option(value='concert_hall') Концертный зал
+				option(value='foyer_of_concert_hall') Фойе концертного зала
+				option(value='upper_gallery') Верхняя галерея
+				option(value='pushkins_room') Пушкинская комната
+				option(value='creative_activities_room') Комната творческих занятий
+				option(value='family_reading_room') Комната семейного чтения
 			.form_title Расписание:
 			.snake_outer
 				.snake

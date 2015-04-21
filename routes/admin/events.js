@@ -71,14 +71,11 @@ exports.add_form = function(req, res) {
 		checkNested(post, [locale, 'description'])
 			&& event.setPropertyLocalised('description', post[locale].description, locale);
 
-		checkNested(post, [locale, 'hall'])
-			&& event.setPropertyLocalised('hall', post[locale].hall, locale);
-
 		checkNested(post, [locale, 'age'])
 			&& event.setPropertyLocalised('age', post[locale].age, locale);
 	});
 
-
+	event.hall = post.hall;
 	event.categorys = post.categorys;
 	event.schedule = schedule;
 	event.exhibition = post.exhibition;
@@ -129,14 +126,12 @@ exports.edit_form = function(req, res) {
 			checkNested(post, [locale, 'description'])
 				&& event.setPropertyLocalised('description', post[locale].description, locale);
 
-			checkNested(post, [locale, 'hall'])
-				&& event.setPropertyLocalised('hall', post[locale].hall, locale);
-
 			checkNested(post, [locale, 'age'])
 				&& event.setPropertyLocalised('age', post[locale].age, locale);
 		});
 
 
+		event.hall = post.hall;
 		event.categorys = post.categorys;
 		event.schedule = schedule;
 

@@ -24,6 +24,7 @@ block content_right
 					a(href='/events/' + exhibition._id)= exhibition.title[0].value.toUpperCase()
 
 block content
+	- var halls = {lobby: 'Вестибюль', knigovorot: 'Книговорот', small_exhibition_hall: 'Малый выставочный зал', mediaklub: 'Медиаклуб (комната 126)', directors_gallery: 'Директорская галерея', conference_hall: 'Конференц-зал', central_gallery: 'Центральная галерея', childrens_workshop: 'Детская мастерская', large_exhibition_hall: 'Большой выставочный зал', green_room: 'Зелёная комната', story_room: 'Комната сказок', favorite_activities_room: 'Комната любимых занятий', concert_hall: 'Концертный зал', foyer_of_concert_hall: 'Фойе концертного зала', upper_gallery: 'Верхняя галерея', pushkins_room: 'Пушкинская комната', creative_activities_room: 'Комната творческих занятий', family_reading_room: 'Комната семейного чтения'}
 	.coontent_title= current.title[0].value.toUpperCase()
 	each column in columns
 		.events_column
@@ -37,6 +38,6 @@ block content
 								.event_dates_block
 									each date in event.schedule
 										.event_date= ('0' + date.getUTCDate()).slice(-2) + '.' + ('0' + (date.getUTCMonth() + 1)).slice(-2) + ' в ' + ('0' + date.getUTCHours()).slice(-2) + ':' + ('0' + date.getUTCMinutes()).slice(-2)
-								.event_hall= event.hall[0].value
+								.event_hall= halls[event.hall]
 								.event_description: != event.description[0].value
 								.event_age= event.age[0].value
