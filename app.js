@@ -121,7 +121,8 @@ app.route('/events/:id').get(schedule.events);
 
 
 // === Schedule Route
-app.route('/schedule/:id').get(schedule.main);
+app.route('/schedule').get(schedule.current_redirect);
+app.route('/schedule/:year/:month').get(schedule.main);
 
 
 // === Admin news Route

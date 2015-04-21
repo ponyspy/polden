@@ -3,6 +3,12 @@ var Event = require('../models/main.js').Event;
 var Category = require('../models/main.js').Category;
 var Exhibition = require('../models/main.js').Exhibition;
 
+
+// ------------------------
+// *** Handlers Block ***
+// ------------------------
+
+
 function toMatrix(arr, rowCount) {
 	var row = 0, matrix = [], curIndex = 0;
 	var rows = Math.ceil(arr.length/rowCount);
@@ -17,10 +23,34 @@ function toMatrix(arr, rowCount) {
 	return matrix;
 }
 
+
+// ------------------------
+// *** Schedule Block ***
+// ------------------------
+
+
+exports.current_redirect = function(req, res) {
+	var date = new Date();
+	var year = date.getFullYear();
+	var month = date.getMonth();
+
+	res.redirect('/schedule/' + year + '/' + (month + 1));
+}
+
+
 exports.main = function(req, res) {
+	var start = new Date(Date.UTC(req.params.year, (req.params.month - 1), 1));
+	var end = new Date(Date.UTC(req.params.year, (req.params.month - 1), 1));
+	end.setUTCFullYear(end.getUTCFullYear(), (end.getUTCMonth() + 1), 0);
 	Event.aggregate()
-		.match({'exhibition': new ObjectId(req.params.id) })
+		// .match({'exhibition': new ObjectId(req.params.id) })
 		.unwind('schedule')
+		.match({
+			'schedule': {
+				'$gte': start,
+				'$lte': end
+			}
+		})
 		.sort({'schedule': 1})
 		.group({
 			'_id': {
@@ -47,6 +77,12 @@ exports.main = function(req, res) {
 			res.render('schedule/index.jade', {dates: dates});
 		});
 }
+
+
+// ------------------------
+// *** Events Block ***
+// ------------------------
+
 
 exports.events = function(req, res) {
 	Event.aggregate()
@@ -75,6 +111,12 @@ exports.events = function(req, res) {
 			});
 		});
 }
+
+
+// ------------------------
+// *** Back Block ***
+// ------------------------
+
 
 exports.main_bak = function(req, res) {
 	res.render('schedule/index_bak.jade');
