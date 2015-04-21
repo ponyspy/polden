@@ -113,7 +113,7 @@ exports.events = function(req, res) {
 		.exec(function(err, categorys) {
 			Category.populate(categorys, {path: '_id.category', select: 'title'}, function(err, categorys) {
 				Exhibition.find().exec(function(err, exhibitions) {
-					var columns = toMatrix(categorys, 2);
+					var columns = toMatrix(categorys.reverse(), 2);
 					var current = exhibitions.filter(function(exhibition) {
 						return exhibition._id.toString() == id;
 					});

@@ -28,6 +28,7 @@ block content
 			+form_multiple_select('categorys', exhibition.categorys, event.categorys)
 			.form_title Зал:
 			select(name='hall')
+				option(value='lobby_meeting') Встреча в вестибюле
 				option(value='lobby', selected=event.hall=='lobby') Вестибюль
 				option(value='knigovorot', selected=event.hall=='knigovorot') Книговорот
 				option(value='small_exhibition_hall', selected=event.hall=='small_exhibition_hall') Малый выставочный зал
