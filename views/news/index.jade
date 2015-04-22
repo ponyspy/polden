@@ -16,7 +16,7 @@ block content
 			.news_date_title= ('0' + date._id.day).slice(-2) + '.' + ('0' + date._id.month).slice(-2)
 			each item in date.news
 				.news_item
-					.news_title= item.title[0].value
-					.news_s_title= item.s_title[0].value
+					.news_title= item.title[0].value.toUpperCase()
+					.news_s_title= item.s_title[0].value.toUpperCase()
 					.news_description
 						!= item.description[0].value

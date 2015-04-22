@@ -12,16 +12,16 @@ block content_scripts
 block content_right
 	.menu_right
 		.categorys_block
-		.categorys_block_title КАТЕГОРИИ
-		.categorys_block_list
-			.category_item.all ВСЕ
-			each category in current.categorys
-				.category_item(class=category._id.toString())= category.title[0].value.toUpperCase()
+			.categorys_block_title категории
+			.categorys_block_list
+				.category_item.all все
+				each category in current.categorys
+					.category_item(class=category._id.toString())= category.title[0].value.toLowerCase()
 		.exhibitions_block
-			.exhibitions_block_title ВЫСТАВКИ
+			.exhibitions_block_title выставки
 			.exhibitions_list
 				each exhibition in exhibitions
-					a(href='/events/' + exhibition._id)= exhibition.title[0].value.toUpperCase()
+					a(href='/events/' + exhibition._id)= exhibition.title[0].value.toLowerCase()
 
 block content
 	- var halls = {lobby_meeting:'Встреча в вестибюле', lobby: 'Вестибюль', knigovorot: 'Книговорот', small_exhibition_hall: 'Малый выставочный зал', mediaklub: 'Медиаклуб (комната 126)', directors_gallery: 'Директорская галерея', conference_hall: 'Конференц-зал', central_gallery: 'Центральная галерея', childrens_workshop: 'Детская мастерская', large_exhibition_hall: 'Большой выставочный зал', green_room: 'Зелёная комната', story_room: 'Комната сказок', favorite_activities_room: 'Комната любимых занятий', concert_hall: 'Концертный зал', foyer_of_concert_hall: 'Фойе концертного зала', upper_gallery: 'Верхняя галерея', pushkins_room: 'Пушкинская комната', creative_activities_room: 'Комната творческих занятий', family_reading_room: 'Комната семейного чтения'}

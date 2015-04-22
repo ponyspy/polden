@@ -21,7 +21,7 @@ block content
 	- var c_month = current.getUTCMonth();
 	- var c_year = current.getUTCFullYear();
 	.content_title= months[c_month] + ' ' + c_year
-	- var days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
+	- var days = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб']
 	each date in dates
 		- var d_date = date._id.date <= 9 ? '0' + date._id.date : date._id.date
 		- var m_month = date._id.month <= 9 ? '0' + date._id.month : date._id.month
