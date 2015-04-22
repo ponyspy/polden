@@ -29,8 +29,8 @@ block content
 	each column in columns
 		.events_column
 			each category in column
-				.events_group(class=category._id.category._id.toString())
-					.events_group_title= category._id.category.title[0].value.toUpperCase()
+				.events_group(class=category.category._id.toString())
+					.events_group_title= category.category.title[0].value.toUpperCase()
 					.events_block
 						each event in category.events
 							.event_item

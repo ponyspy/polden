@@ -110,15 +110,22 @@ exports.events = function(req, res) {
 				}
 			}
 		})
+		.project({
+			'_id': 0,
+			'category': '$_id.category',
+			'events': '$events'
+		})
 		.exec(function(err, categorys) {
-			Category.populate(categorys, {path: '_id.category', select: 'title'}, function(err, categorys) {
-				Exhibition.find().exec(function(err, exhibitions) {
-					var columns = toMatrix(categorys.reverse(), 2);
-					var current = exhibitions.filter(function(exhibition) {
-						return exhibition._id.toString() == id;
-					});
-					Category.populate(current, {path: 'categorys', select: 'title'}, function(err, current) {
-						res.render('schedule/events.jade', {columns: columns, exhibitions: exhibitions, current: current[0]});
+			Exhibition.findById(id).exec(function(err, current) {
+				categorys.sort(function(a, b) {
+					return current.categorys.indexOf(a.category) < current.categorys.indexOf(b.category) ? -1 : 1;
+				});
+				Category.populate(categorys, {path: 'category', select: 'title'}, function(err, categorys) {
+					Exhibition.find().exec(function(err, exhibitions) {
+						Category.populate(current, {path: 'categorys', select: 'title'}, function(err, current) {
+							var columns = toMatrix(categorys, 2);
+							res.render('schedule/events.jade', {columns: columns, exhibitions: exhibitions, current: current});
+						});
 					});
 				});
 			});
