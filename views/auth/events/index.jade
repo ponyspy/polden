@@ -21,4 +21,4 @@ block content
 			.event
 				a.rm_event(href='#', id=event._id)= 'удалить '
 				!=' | '
-				a(href='/auth/exhibitions/edit/' + exhibition._id + '/events/edit/' + event._id)= event.i18n.title.get('ru')
+				a(href='/auth/exhibitions/edit/' + exhibition._id + '/events/edit/' + event._id)= event.i18n.title.get('ru') ? event.i18n.title.get('ru') : 'Заголовок события'
