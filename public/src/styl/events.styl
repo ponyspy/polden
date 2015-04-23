@@ -3,6 +3,10 @@
 		color black
 
 .menu_right
+	width 240px
+	&.fixed
+		top 15px
+		position fixed
 	.category_item
 	a
 		display block
@@ -28,10 +32,15 @@
 	font 16pt/18pt 'DinProBold'
 	margin-bottom 20px
 
+.events_columns_block
+	overflow hidden
+
 .events_column
 	float left
 	width 230px
 	margin-right 55px
+	&:last-child
+		margin-right 0px
 
 .events_group_title
 	font 16pt/18pt 'DinProBold'
