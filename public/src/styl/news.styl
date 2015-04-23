@@ -4,7 +4,6 @@
 
 .content_block
 	width 1000px
-	// outline 1px solid red
 
 .news_item
 	margin-bottom 20px
@@ -12,7 +11,6 @@
 .news_date_title
 	font 14pt/16pt 'DinProBold'
 	color #ff144b
-	// border-bottom 2px solid #ff144b
 
 .news_title
 	font 16pt/18pt 'DinProBold'
@@ -44,7 +42,6 @@
 		color black
 
 .images_gallery_outer
-	// outline 1px solid red
 	white-space nowrap
 	overflow hidden
 	margin-right 30px
@@ -60,8 +57,11 @@
 
 .column
 	width auto
+	min-width 350px
 	height 250px
 	border 5px solid rgb(0, 220, 50)
 	margin-right 10px
 	display inline-block
+	&:last-child
+		margin-right 0px
 
