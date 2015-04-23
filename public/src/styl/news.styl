@@ -9,7 +9,7 @@
 .news_item
 	margin-bottom 20px
 
-.news_date_title
+.news_date
 	font 14pt/16pt 'DinProBold'
 	color #ff144b
 
@@ -65,7 +65,7 @@
 .column
 	width auto
 	cursor pointer
-	min-width 50px
+	min-width 80px
 	height 140px
 	border 5px solid rgb(0, 220, 50)
 	margin-right 10px
@@ -78,8 +78,10 @@
 .image_preview
 	width 800px
 	height 400px
+	overflow hidden
 	margin-bottom 10px
-	background-size cover
-	background-position center
 	display none
 	cursor pointer
+	img
+		display block
+		width 800px

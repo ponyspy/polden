@@ -1,3 +1,7 @@
+var jade = require('jade');
+var path = require('path');
+var __appdir = path.dirname(require.main.filename);
+
 var News = require('../models/main.js').News;
 
 
@@ -7,29 +11,20 @@ var News = require('../models/main.js').News;
 
 
 exports.main = function(req, res) {
-  News.aggregate()
-  .sort({'date': -1})
-  .group({
-    '_id': {
-      year: { $year: '$date' },
-      month: { $month: '$date' },
-      day: { $dayOfMonth: '$date' }
-    },
-    'news': {
-      $push: {
-        title: '$title',
-        s_title: '$s_title',
-        description: '$description',
-        time: {
-          hours: { $hour: '$date' },
-          minutes: { $minute: '$date' }
-        }
-      }
-    },
-    'count': { $sum: 1 }
-  })
-  .sort({'_id.year': -1, '_id.month': -1, '_id.day': -1})
-  .exec(function(err, dates) {
-    res.render('news', {dates: dates});
+  News.find().limit(5).sort('-date').exec(function(err, news) {
+    res.render('news', {news: news});
+  });
+}
+
+exports.get_news = function(req, res) {
+  var post = req.body;
+
+  News.find().sort('-date').skip(post.skip).limit(post.limit).exec(function(err, news) {
+    if (news.length > 0) {
+      var data = jade.renderFile(__appdir + '/views/news/get_news.jade', {news: news});
+      res.send(data);
+    } else {
+      res.send('out');
+    }
   });
 }

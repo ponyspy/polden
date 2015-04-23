@@ -113,7 +113,9 @@ app.route('/lang/:locale').get(main.locale);
 
 
 // === News Route
-app.route('/news').get(news.main);
+app.route('/news')
+	.get(news.main)
+	.post(news.get_news);
 
 
 // === Events Route
