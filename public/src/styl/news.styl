@@ -2,6 +2,10 @@
 	a:nth-child(1)
 		color black
 
+.content_block
+	width 1000px
+	// outline 1px solid red
+
 .news_item
 	margin-bottom 20px
 
@@ -13,13 +17,51 @@
 .news_title
 	font 16pt/18pt 'DinProBold'
 	text-transform uppercase
+	width 800px
 	margin-top 5px
 	color #ff144b
 
 .news_s_title
 	font 16pt/18pt 'DinProBold'
+	width 800px
 	color black
 	margin-bottom 5px
 
 .news_description
+	width 800px
 	font 14pt/16pt 'DinProMedium'
+
+.images_gallery_block
+	overflow hidden
+	margin-bottom 10px
+
+.gallery_navigate
+	font 12pt/14pt 'DinProBold'
+	color rgb(0, 220, 50)
+	cursor pointer
+	margin-bottom 5px
+	&:hover
+		color black
+
+.images_gallery_outer
+	// outline 1px solid red
+	white-space nowrap
+	overflow hidden
+	margin-right 30px
+	float left
+	width 800px
+	height 260px
+	top 60px
+	bottom 0
+
+.images_gallery_inner
+	display block
+	height 100%
+
+.column
+	width auto
+	height 250px
+	border 5px solid rgb(0, 220, 50)
+	margin-right 10px
+	display inline-block
+
