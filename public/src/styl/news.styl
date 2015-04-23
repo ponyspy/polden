@@ -4,6 +4,7 @@
 
 .content_block
 	width 1000px
+	min-height 500px
 
 .news_item
 	margin-bottom 20px
@@ -41,13 +42,19 @@
 	&:hover
 		color black
 
-.images_gallery_outer
-	white-space nowrap
-	overflow hidden
-	margin-right 30px
-	float left
+.images_gallery_cover
 	width 800px
 	height 260px
+	overflow hidden
+	float left
+	margin-right 30px
+
+.images_gallery_outer
+	white-space nowrap
+	overflow-y hidden
+	vertical-align top
+	width 800px
+	height 280px
 	top 60px
 	bottom 0
 
@@ -57,11 +64,18 @@
 
 .column
 	width auto
+	cursor pointer
 	min-width 350px
-	height 250px
+	height 240px
 	border 5px solid rgb(0, 220, 50)
 	margin-right 10px
 	display inline-block
+	&:hover
+		border 5px solid black
 	&:last-child
 		margin-right 0px
 
+.image_preview
+	width 800px
+	display none
+	cursor pointer
