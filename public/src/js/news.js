@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var skip = 5;
+	var skip = 6;
 
 	$(document)
 		.on('click', '.column', function(event) {
