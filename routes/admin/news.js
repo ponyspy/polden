@@ -1,7 +1,7 @@
 var path = require('path');
 var mkdirp = require('mkdirp');
 var async = require('async');
-var gm = require('gm');
+var gm = require('gm').subClass({ imageMagick: true });
 
 var News = require('../../models/main.js').News;
 
