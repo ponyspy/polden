@@ -16,22 +16,17 @@ block content
 				.news_date= ('0' + item.date.getUTCDate()).slice(-2) + '.' + ('0' + item.date.getUTCMonth()).slice(-2)
 				.news_title= item.title[0].value.toUpperCase()
 				.news_s_title= item.s_title[0].value.toUpperCase()
-				.images_gallery_block
-					.image_preview
-					.images_gallery_cover
-						.images_gallery_outer
-							.images_gallery_inner
-								img.column(src='http://prirodasibiri.ru/images/news/pic/5300_1.jpg')
-								img.column(src='http://www.nimbusmens.com.ua/wp-content/uploads/2013/11/Keltskiy-goroskop-zhivotnyh-Medved.jpg')
-								img.column(src='http://timoshin.ucoz.ru/_ph/7/270841940.jpg')
-								img.column(src='http://prirodasibiri.ru/images/news/pic/5300_1.jpg')
-								img.column(src='http://www.nimbusmens.com.ua/wp-content/uploads/2013/11/Keltskiy-goroskop-zhivotnyh-Medved.jpg')
-								img.column(src='http://timoshin.ucoz.ru/_ph/7/270841940.jpg')
-								img.column(src='http://prirodasibiri.ru/images/news/pic/5300_1.jpg')
-								img.column(src='http://www.nimbusmens.com.ua/wp-content/uploads/2013/11/Keltskiy-goroskop-zhivotnyh-Medved.jpg')
-								img.column(src='http://timoshin.ucoz.ru/_ph/7/270841940.jpg')
-					.images_gallery_navigate
-						.gallery_navigate.back назад
-						.gallery_navigate.forward вперед
+				if (item.images.length > 0)
+					.images_gallery_block
+						.image_preview
+						.images_gallery_cover
+							.images_gallery_outer
+								.images_gallery_inner
+									each image in item.images
+										img.column(src=image.thumb, full=image.original)
+						if (item.images.length > 3)
+							.images_gallery_navigate
+								.gallery_navigate.back назад
+								.gallery_navigate.forward вперед
 				.news_description
 					!= item.description[0].value

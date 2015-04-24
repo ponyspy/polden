@@ -1,4 +1,11 @@
+var path = require('path');
+var mkdirp = require('mkdirp');
+var async = require('async');
+var gm = require('gm');
+
 var News = require('../../models/main.js').News;
+
+var __appdir = path.dirname(require.main.filename);
 
 
 // ------------------------
@@ -49,6 +56,7 @@ exports.add_form = function(req, res) {
   var date = new Date();
   var hours = date.getHours();
   var minutes = date.getMinutes();
+  var images = [];
 
   var news = new News();
 
@@ -65,12 +73,53 @@ exports.add_form = function(req, res) {
       && news.setPropertyLocalised('description', post[locale].description, locale);
   });
 
-
   news.date = new Date(Date.UTC(post.date.year, post.date.month, post.date.date, hours, minutes));
 
-  news.save(function(err, news) {
-    res.redirect('/auth/news');
+  if (!post.images) {
+    return (function () {
+      news.images = [];
+      news.save(function(err, news) {
+        res.redirect('back');
+      });
+    })();
+  }
+
+  var public_path = __appdir + '/public';
+
+  var images_path = {
+    original: '/images/news/' + news._id + '/original/',
+    thumb: '/images/news/' + news._id + '/thumb/',
+  }
+
+  mkdirp.sync(public_path + images_path.original);
+  mkdirp.sync(public_path + images_path.thumb);
+
+  post.images.path.forEach(function(item, i) {
+    images.push({
+      path: post.images.path[i]
+    });
   });
+
+  async.forEachSeries(images, function(image, callback) {
+    var name = Date.now();
+    var original_path = images_path.original + name + '.jpg';
+    var thumb_path = images_path.thumb + name + '.jpg';
+
+    gm(public_path + image.path).resize(false, 140).write(public_path + thumb_path, function() {
+      gm(public_path + image.path).resize(1000, false).write(public_path + original_path, function() {
+        news.images.push({
+          original: original_path,
+          thumb: thumb_path,
+        });
+        callback();
+      });
+    });
+  }, function() {
+    news.save(function() {
+      res.redirect('back');
+    });
+  });
+
 }
 
 

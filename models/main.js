@@ -14,7 +14,10 @@ var newsSchema = new Schema({
 	title: { type: String, trim: true, locale: true },
 	s_title: { type: String, trim: true, locale: true },
 	description: { type: String, trim: true, locale: true },
-	photos: [String],
+	images: [{
+		original: String,
+		thumb: String
+	}],
 	date: {type: Date, default: Date.now}
 });
 
