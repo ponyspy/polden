@@ -4,7 +4,7 @@ var style_array =
 [{"featureType":"landscape","stylers":[{"hue":"#000000"},{"saturation":-100},{"lightness":44},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#00F93f"},{"saturation":100},{"lightness":-40.95294117647059},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#00F93f"},{"saturation":100},{"lightness":-51.15294117647059},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#00F93f"},{"saturation":100},{"lightness":-50.35294117647059},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#00F93f"},{"saturation":100},{"lightness":-50.35294117647059},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00F93f"},{"saturation":100},{"lightness":-50.35294117647059},{"gamma":1}]}]
 
 function initialize() {
-	var myLatlng = new google.maps.LatLng(55.7278189, 37.6126791);
+	var myLatlng = new google.maps.LatLng(55.7285410, 37.6129700);
 
 	var mapOptions = {
 		zoom: 18,
