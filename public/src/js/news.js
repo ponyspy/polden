@@ -1,22 +1,32 @@
 $(document).ready(function() {
 	var skip = 6;
-	var $images;
+	var index;
 
 	$(document)
 		.on('mouseup', function(event) {
-			var container = $('.image_preview');
+			var $container = $('.images_preview');
 
-			if (!container.is(event.target)
-					&& container.has(event.target).length === 0)
+			if (!$container.is(event.target)
+					&& $container.has(event.target).length === 0)
 			{
-					container.fadeOut(300);
 					$('.main_block').removeAttr('style');
+					$container.fadeOut(300).promise().done(function() {
+						$('.images_preview').empty();
+					});
 			}
 		})
 		.on('click', '.column', function(event) {
-			var path = $(this).attr('full');
-			$('.main_block').css('opacity', 0.1)
-			$('.image_preview').attr('src', path).fadeIn(300);
+			var $images = [];
+			index = $(this).index();
+
+			$(this).parent('.images_gallery_inner').children('.column').each(function() {
+				var path = $(this).attr('full');
+				var $image = $('<img/>', {src: path, 'class': 'image_preview'});
+				$images.push($image);
+			});
+
+			$('.main_block').css('opacity', 0.1);
+			$('.images_preview').empty().append($images).fadeIn(300).children('.image_preview').hide().eq(index).show();
 		})
 		.on('click', '.gallery_navigate', function(event) {
 			var $this = $(this);
@@ -31,8 +41,12 @@ $(document).ready(function() {
 			}, 300);
 		})
 		.on('click', '.image_preview', function(event) {
-			$(this).fadeOut(300);
-			$('.main_block').removeAttr('style');
+			var length = $('.images_preview').length;
+			index = $(this).index();
+
+			index != length
+				? $(this).hide().next().show()
+				: $('.image_preview').hide().eq(0).show();
 		})
 		.on('scroll', function() {
 			if ($('.content_block').height() - 650 <= $(document).scrollTop()) {

@@ -75,17 +75,20 @@
 	&:last-child
 		margin-right 0px
 
-.image_preview
-	height 600px
-	margin auto
-	position fixed
-	z-index 9999999
-	border 5px solid rgb(0, 220, 50)
-	top 0
-	left 0
-	bottom 0
-	right 0
+.images_preview
+	width 100%
+	height 100%
 	display none
-	cursor pointer
-	&:hover
-		border 5px solid black
+	.image_preview
+		z-index 9999999
+		cursor pointer
+		position fixed
+		top 0
+		left 0
+		bottom 0
+		right 0
+		margin auto
+		height 600px
+		border 5px solid rgb(0, 220, 50)
+		&:hover
+			border 5px solid black
