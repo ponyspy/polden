@@ -76,12 +76,16 @@
 		margin-right 0px
 
 .image_preview
-	width 800px
-	height 400px
-	overflow hidden
-	margin-bottom 10px
+	height 600px
+	margin auto
+	position fixed
+	z-index 9999999
+	border 5px solid rgb(0, 220, 50)
+	top 0
+	left 0
+	bottom 0
+	right 0
 	display none
 	cursor pointer
-	img
-		display block
-		width 800px
+	&:hover
+		border 5px solid black
