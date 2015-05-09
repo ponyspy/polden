@@ -41,7 +41,7 @@ $(document).ready(function() {
 			}, 300);
 		})
 		.on('click', '.image_preview', function(event) {
-			var length = $('.images_preview').length;
+			var length = $('.images_preview').children('.image_preview').length;
 			index = $(this).index();
 
 			index != length
