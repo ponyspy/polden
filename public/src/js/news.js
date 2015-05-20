@@ -69,7 +69,7 @@ $(document).ready(function() {
 				}).done(function(data) {
 					if (data != 'out') {
 						$('.news_block').append(data).promise().done(function() {
-							$('.news_item').slice(skip, $('.news_item').length).each(function() {
+							$('.news_item').slice(skip, $('.news_item').length - 1).each(function() {
 								var $this = $(this);
 								if ($this.find('.images_gallery_inner').width() < 800) {
 									$this.find('.images_gallery_navigate').hide();
