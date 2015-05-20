@@ -23,9 +23,8 @@ block content
 								.images_gallery_inner
 									each image in item.images
 										img.column(src=image.thumb, full=image.original)
-						if (item.images.length > 3)
-							.images_gallery_navigate
-								.gallery_navigate.back назад
-								.gallery_navigate.forward вперед
+						.images_gallery_navigate
+							.gallery_navigate.back назад
+							.gallery_navigate.forward вперед
 				.news_description
 					!= item.description[0].value
