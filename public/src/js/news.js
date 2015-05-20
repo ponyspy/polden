@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 	$('.news_item').each(function() {
 		var $this = $(this);
-		if ($this.find('.images_gallery_inner').width() < 350) {
+		if ($this.find('.images_gallery_inner').width() < 800) {
 			$this.find('.images_gallery_navigate').hide();
 		}
 	});
@@ -71,7 +71,7 @@ $(document).ready(function() {
 						$('.news_block').append(data).promise().done(function() {
 							$('.news_item').slice(skip, $('.news_item').length).each(function() {
 								var $this = $(this);
-								if ($this.find('.images_gallery_inner').width() < 350) {
+								if ($this.find('.images_gallery_inner').width() < 800) {
 									$this.find('.images_gallery_navigate').hide();
 								}
 							});
