@@ -48,7 +48,6 @@ var error_logger = function(error) {
 		'----------- ERROR MESSAGE END -----------'.bold.red.inverse,
 		''
 	].join('\n'));
-	this.end();
 }
 
 var watch_logger = function(event) {
@@ -68,7 +67,7 @@ gulp.task('nodemon', function() {
 		ext: 'js',
 		ignore: paths.nodemon.ignore,
 		env: { 'NODE_ENV': Production ? 'production' : 'development' },
-	})
+	});
 });
 
 
@@ -83,7 +82,6 @@ gulp.task('stylus', function () {
 				browsers: ['last 2 versions'],
 				cascade: !Production
 			}))
-			.pipe(plumber.stop())
 			.pipe(gulp.dest(paths.stylus.dest));
 });
 
@@ -95,7 +93,6 @@ gulp.task('scripts', function () {
 			.pipe(jshint.reporter('jshint-stylish'))
 			.pipe(changed(paths.scripts.dest))
 			.pipe(gulpif(Production, uglify()))
-			.pipe(plumber.stop())
 			.pipe(gulp.dest(paths.scripts.dest));
 });
 
