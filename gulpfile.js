@@ -29,33 +29,36 @@ var paths = {
 	},
 	nodemon: {
 		ignore: ['public/*']
+	},
+	clean: {
+		pub: ['public/build/css/*', 'public/build/js/*']
 	}
 }
 
 // Loggers Block
 
-function error_logger(error) {
+var error_logger = function(error) {
 	console.log([
 		'',
-		"---------- ERROR MESSAGE START ----------".bold.red.inverse,
+		'---------- ERROR MESSAGE START ----------'.bold.red.inverse,
 		'',
 		(error.name.red + ' in ' + error.plugin.yellow),
 		'',
 		error.message,
-		"----------- ERROR MESSAGE END -----------".bold.red.inverse,
+		'----------- ERROR MESSAGE END -----------'.bold.red.inverse,
 		''
 	].join('\n'));
 	this.end();
 }
 
 var watch_logger = function(event) {
-	console.log('File ' + event.path.green + ' was ' + event.type + ', running tasks...');
+	console.log('File ' + event.path.green + ' was ' + event.type.yellow + ', running tasks...');
 }
 
 // Tasks Block
 
 gulp.task('clean', function() {
-	del(['public/build/css/*', 'public/build/js/*']);
+	del(paths.clean.pub);
 });
 
 
