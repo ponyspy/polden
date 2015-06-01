@@ -4,10 +4,11 @@ var gulp = require('gulp'),
 		gulpsync = require('gulp-sync')(gulp),
 		gulpif = require('gulp-if'),
 		changed = require('gulp-changed'),
+		plumber = require('gulp-plumber'),
 		nodemon = require('gulp-nodemon'),
+		stylus = require('gulp-stylus'),
 		autoprefixer = require('gulp-autoprefixer'),
 		uglify = require('gulp-uglify'),
-		stylus = require('gulp-stylus'),
 		jshint = require('gulp-jshint');
 
 
@@ -41,7 +42,7 @@ function error_logger(error) {
 		(error.name.red + ' in ' + error.plugin.yellow),
 		'',
 		error.message,
-		"---------- ERROR MESSAGE END ----------".bold.red.inverse,
+		"----------- ERROR MESSAGE END -----------".bold.red.inverse,
 		''
 	].join('\n'));
 	this.end();
@@ -71,23 +72,27 @@ gulp.task('nodemon', function() {
 gulp.task('stylus', function () {
 	gulp.src(paths.stylus.src)
 			.pipe(changed(paths.stylus.dest))
+			.pipe(plumber(error_logger))
 			.pipe(stylus({
 				compress: Production
-			})).on('error', error_logger)
+			}))
 			.pipe(autoprefixer({
 				browsers: ['last 2 versions'],
 				cascade: !Production
-			})).on('error', error_logger)
+			}))
+			.pipe(plumber.stop())
 			.pipe(gulp.dest(paths.stylus.dest));
 });
 
 
 gulp.task('scripts', function () {
 	gulp.src(paths.scripts.src)
-			.pipe(jshint()).on('error', error_logger)
+			.pipe(plumber(error_logger))
+			.pipe(jshint())
 			.pipe(jshint.reporter('jshint-stylish'))
 			.pipe(changed(paths.scripts.dest))
 			.pipe(gulpif(Production, uglify()))
+			.pipe(plumber.stop())
 			.pipe(gulp.dest(paths.scripts.dest));
 });
 
