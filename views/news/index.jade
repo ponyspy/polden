@@ -13,7 +13,7 @@ block content
 	.news_block
 		each item in news
 			.news_item
-				.news_date= ('0' + item.date.getUTCDate()).slice(-2) + '.' + ('0' + item.date.getUTCMonth()).slice(-2)
+				.news_date= ('0' + item.date.getUTCDate()).slice(-2) + '.' + ('0' + (item.date.getUTCMonth() + 1)).slice(-2)
 				.news_title= item.title[0].value.toUpperCase()
 				.news_s_title= item.s_title[0].value.toUpperCase()
 				if (item.images.length > 0)
