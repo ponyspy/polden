@@ -2,6 +2,7 @@ var path = require('path');
 var mkdirp = require('mkdirp');
 var async = require('async');
 var gm = require('gm').subClass({ imageMagick: true });
+var del = require('del');
 
 var News = require('../../models/main.js').News;
 
@@ -177,7 +178,7 @@ exports.edit_form = function(req, res) {
 exports.remove = function(req, res) {
   var id = req.body.id;
   News.findByIdAndRemove(id, function() {
-    // deleteFolderRecursive(__dirname + '/public/images/events/' + id);
+    del(__dirname + '/public/images/news/' + id);
     res.send('ok');
   });
 }
