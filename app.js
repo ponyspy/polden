@@ -210,6 +210,11 @@ app.route('/auth/exhibitions/edit/:id/events/edit/:event_id')
 	 .post(checkAuth, admin_events.edit_form);
 
 
+// === Admin @remove events Route
+app.route('/auth/events/remove')
+	 .post(checkAuth, admin_events.remove);
+
+
 // === Auth Route
 app.route('/auth').get(checkAuth, auth.main);
 
