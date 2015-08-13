@@ -147,7 +147,7 @@ app.route('/auth/news/edit/:id')
 
 
 // === Admin @remove news Route
-app.route('/auth/categorys/remove')
+app.route('/auth/news/remove')
 	 .post(checkAuth, admin_news.remove);
 
 
