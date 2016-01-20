@@ -3,7 +3,7 @@ var gm = require('gm').subClass({ imageMagick: true });
 var async = require('async');
 
 var mongoose = require('mongoose');
-		mongoose.connect('localhost', 'main');
+		mongoose.connect(process.env.DB_LINK || 'localhost', 'main');
 
 var express = require('express'),
 		bodyParser = require('body-parser'),
