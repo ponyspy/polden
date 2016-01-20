@@ -16,6 +16,7 @@
     "method-override": "^2.2.0",
     "mkdirp": "^0.5.0",
     "mongoose": "^4.0.3",
+    "mongoose-locale": "github:ponyspy/mongoose-locale",
     "multer": "^0.1.4"
   },
   "devDependencies": {
